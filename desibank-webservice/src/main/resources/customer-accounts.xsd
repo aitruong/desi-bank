@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.soapwebserice.com/customer-accounts"
+	xmlns:tns="http://www.soapwebserice.com/customer-accounts"
+	elementFormDefault="qualified">
+	<!-- 
+	 com.soapwebserice.customer-accounts
+	   SavingAccount savingAccount=new savingAccount();
+	 -->
+	 <!--
+	  This is called global element
+	   and this will be appeared as root element in the XML
+	  -->
+	<element name="savingAccount" type="tns:SavingAccount"/>
+	<!-- 
+	 class SavingAccount {
+	 }
+	 -->
+	<complexType name="SavingAccount">
+		            <sequence>
+		            		<element name="accountNumber" type="string" minOccurs="1" maxOccurs="1"/>
+		            	    <element name="balance" type="float"/>
+		            	     <element name="type" type="string"/>
+		            	     <element name="description" type="string" maxOccurs="1" minOccurs="0"/>
+		            </sequence>				
+	</complexType>
+			
+</schema>

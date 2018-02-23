@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context  docBase="desi-bank" path="/">
+    Specify a JDBC datasource
+    <Resource name="jdbc/desi-bank-ds" auth="Container"
+        type="javax.sql.DataSource" username="root" password="root"
+        driverClassName="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://localhost:3306/desi_bank_db?createDatabaseIfNotExist=true"
+        maxActive="100" maxIdle="4" />
+</Context>

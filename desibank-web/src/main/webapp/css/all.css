@@ -1,0 +1,23 @@
+@CHARSET "UTF-8";
+
+.error{
+	color:red;
+}
+
+#scroll{
+	width: 50%;
+	display: inline-flex;
+	float:right;
+}
+
+#user_profile{
+	display:inline-block;
+	width: 50%;
+	display: inline-block;
+	font-size:18px;
+}
+
+label {
+    display: inline-block; //So that we can set the width
+    width: 40px; //Whatever the widest label will be.
+}

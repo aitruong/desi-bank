@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<savingAccount xmlns="http://www.soapwebserice.com/customer-accounts"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.soapwebserice.com/customer-accounts customer-accounts.xsd ">
+	<accountNumber>03949848484</accountNumber>
+	<balance>3435.6</balance>
+	<type>zero balance</type>
+	<description>I am learning xsd</description>
+</savingAccount>

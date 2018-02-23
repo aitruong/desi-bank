@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+			p{
+				font-family: 'Open Sans', sans-serif;
+			}
+	</style>
+</head>
+  
+<body>
+
+	  <p>	   	
+      Dear ${cname},
+      </p>
+      
+       <p  style="color: blue;">	   	
+   	 Your  "Application"  has been accepted to open a saving account with our bank.
+   	 </p>
+   	    <br/>	    	
+   	   <p>	   	
+   	 Please click on below link to  complete your registration......
+   	 </p>
+   	   <p>	   	
+   	 <a href="${registrationlink}">Registration link</a>
+   	 </p>
+   	 <br/>	    	
+   	  <p>	 
+   	 Thanks & Regards,
+   	 </p>
+   	 <p style="font-family: 'Open Sans', sans-serif;font-weight: bold;color:red;'">
+   	 DesiBank Admin<br/><br/>
+   	 <span style="color:black;">Mobile : +10292982929229</span>
+   	 </p>
+   	 <img src="cid:banklogo"/>
+    
+</body>
+</html>

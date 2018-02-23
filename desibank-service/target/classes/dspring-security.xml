@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:security="http://www.springframework.org/schema/security"
+    xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	   		http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-3.0.xsd
+			 http://www.springframework.org/schema/security 
+                    http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+    <!-- <security:global-method-security pre-post-annotations="enabled" proxy-target-class="true"/>  -->              
+	<!-- This is where we configure Spring-Security  -->
+ 	<security:http auto-config="true" use-expressions="true" access-denied-page="/common/denied.htm" >
+ 		<security:intercept-url pattern="/auth/logout.htm" access="permitAll"/> 
+ 		<security:intercept-url pattern="saving/accounts/registration.htm" access="permitAll"/>
+	 		<security:intercept-url pattern="/auth/slogout.htm" access="permitAll"/> 
+	 	<security:intercept-url pattern="/auth.htm" access="permitAll"/>
+	 	<security:intercept-url pattern="/emailtemplate.jsp" access="permitAll"/>
+	 	<security:intercept-url pattern="/customer/registation.htm" access="permitAll"/>
+	 	<security:intercept-url pattern="/customer/savingAccount.htm" access="permitAll"/>
+		<security:intercept-url pattern="/customer/registration.htm" access="permitAll"/>
+		<security:intercept-url pattern="/employee/**" access="hasRole('employee')"/>
+		<security:intercept-url pattern="/customer/**" access="permitAll"/>
+		<!-- <security:intercept-url pattern="/employee/**" access="hasRole('employee')"/>	
+		<security:intercept-url pattern="/customer/**" access="hasRole('customer')"/>
+		<security:intercept-url pattern="/admin/**" access="hasRole('admin')"/>
+		 <security:intercept-url pattern="/customer/**" access="hasAnyRole('admin','customer','employee')"/>  -->
+		
+	<!-- 	<security:form-login login-page="/index.jsp"
+				authentication-failure-url="/auth/invalid-auth.htm" 
+				default-target-url="/homePage.htm"/> -->
+				
+		<security:form-login login-page="/index.jsp"
+                authentication-failure-handler-ref="LoginFailureUserAuthHandler"   
+                authentication-success-handler-ref="LoginSuccessUserAuthHandler"/>				
+		
+		<security:logout invalidate-session="true" logout-success-url="/auth/slogout.htm" logout-url="/auth/logout.htm"/>		
+		
+			<security:session-management invalid-session-url="/auth/sessionTimeoutPage.htm">
+							<security:concurrency-control error-if-maximum-exceeded="true" max-sessions="1"/>
+			</security:session-management> 
+		
+	</security:http>
+	
+	<!-- Declare an authentication-manager to use a custom userDetailsService -->
+	<security:authentication-manager>
+	        <security:authentication-provider user-service-ref="UserSpringSecuirtyAuthProvider">
+	        	<!-- 	<security:password-encoder ref="bcryptEncoder"/> -->
+	        </security:authentication-provider>
+	</security:authentication-manager>
+	
+	<!-- Use a Md5 encoder since the user's passwords are stored as Md5 in the database -->
+	<bean class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" id="passwordEncoder"/>
+	
+	 <bean id="bcryptEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+    
+
+	<!-- A custom service where Spring will retrieve users and their corresponding access levels  -->
+<!-- 	<bean id="customUserDetailsService" class="com.ez.spring.security.CustomUserDetailsService">
+	   <property name="adminDaoEm"  ref="adminDaoEmImpl"/>
+	</bean> -->
+	
+</beans>

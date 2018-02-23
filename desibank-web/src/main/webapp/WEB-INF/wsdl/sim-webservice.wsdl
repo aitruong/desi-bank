@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.store.idea.com/sim"
+	 xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="sim-webservice"
+	targetNamespace="http://www.store.idea.com/sim">
+	<wsdl:types>
+			 <!-- Hhhhhhhhhhhhhhhhhhhhh -->
+			 <xsd:schema>
+			 		<xsd:import namespace="http://www.store.idea.com/sim" schemaLocation="sim.xsd"/>
+			 		<xsd:import namespace="http://www.store.idea.com/sim" schemaLocation="fault.xsd"/>
+			 </xsd:schema>
+	</wsdl:types>
+	
+		<wsdl:message name="SimFaultMessageException">
+					<wsdl:part element="tns:sfault" name="simFaultMessage" />
+	</wsdl:message>
+	
+	<wsdl:message name="findSimMessageRequest">
+		<wsdl:part element="tns:findSimRequest" name="psim" />
+	</wsdl:message>
+	
+	<wsdl:message name="findSimMessageResponse">
+		<wsdl:part element="tns:findSimResponse" name="return" />
+	</wsdl:message>
+	
+	<wsdl:message name="findAllSimsMessageRequest">
+		<wsdl:part element="tns:findAllSimsRequest" name="psim" />
+	</wsdl:message>
+	
+	<wsdl:message name="findAllSimsMessageResponse">
+		<wsdl:part element="tns:findAllSimsResponse" name="return" />
+	</wsdl:message>
+	
+	<wsdl:portType name="SimWebservice">
+			<wsdl:documentation>
+				 return namemethd(arg) throws tns:SimFaultMessage
+			</wsdl:documentation>
+		<wsdl:operation name="findSimById">
+			<wsdl:input message="tns:findSimMessageRequest" />
+			<wsdl:output message="tns:findSimMessageResponse" />
+			<wsdl:fault name="SimFaultException" message="tns:SimFaultMessageException"/>
+		</wsdl:operation>
+		
+		<wsdl:operation name="findAllSims">
+			<wsdl:input message="tns:findAllSimsMessageRequest" />
+			<wsdl:output message="tns:findAllSimsMessageResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+	
+	<wsdl:binding name="SimWebserviceBinding" type="tns:SimWebservice">
+               <soap:binding style="document"
+                             transport="http://schemas.xmlsoap.org/soap/http" />
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="findSimById">
+			<soap:operation soapAction="http://www.store.idea.com/sim/findSimById" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			  <wsdl:fault name="SimFaultException">
+			  		<soap:fault name="SimFaultException"/>
+			  </wsdl:fault>
+		</wsdl:operation>
+		
+			<wsdl:operation name="findAllSims">
+			<soap:operation soapAction="http://www.store.idea.com/sim/findAllSims" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	
+	<wsdl:service name="SimWebserviceService">
+		<wsdl:port binding="tns:SimWebserviceBinding" name="SimWebservicePort">
+			<soap:address location="www.jicker.com/simWebServiceProvider" />
+		</wsdl:port>
+	</wsdl:service>
+	
+	 <!-- for message level security we have to add the policy
+           Soap-Policy
+            -->
+           <wsp:Policy xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+                    xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" 
+                    wsu:Id="CustomerServiceSOAPBindingPolicy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SupportingTokens xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+          <wsp:Policy>
+            <sp:UsernameToken sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient"/>
+          </wsp:Policy>
+        </sp:SupportingTokens>
+     
+        <sc:ValidatorConfiguration xmlns:sc="http://schemas.sun.com/2006/03/wss/server" xmlns:wspp="http://java.sun.com/xml/ns/wsit/policy"
+        wspp:visibility="private">
+          <sc:Validator classname="com.soap.webservice.password.handler.UsernamePasswordHandler" name="usernameValidator"/>
+        </sc:ValidatorConfiguration>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+
+	
+</wsdl:definitions>

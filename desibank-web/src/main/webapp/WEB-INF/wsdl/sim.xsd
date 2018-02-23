@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.store.idea.com/sim"
+	xmlns:tns="http://www.store.idea.com/sim" elementFormDefault="qualified">
+	
+    <element name="findSimRequest"  type="string"/>	
+	<element name="findSimResponse"  type="tns:Sim"/>
+	
+	 <element name="findAllSimsRequest"  type="tns:Void"/>	
+	<element name="findAllSimsResponse"  type="tns:SimList"/>
+	<!-- 
+	  class SimList{
+	  		List<Sim> sims;
+	  	  }
+	 -->
+		<complexType name="SimList">
+			<sequence>
+						<element  name="sims" type="tns:Sim" maxOccurs="unbounded" minOccurs="0"/>
+			</sequence>
+	</complexType>
+	
+	<complexType name="Void">
+			<sequence>	</sequence>
+	</complexType>
+	 
+	<!-- 
+	   class Sim {
+	   }
+	 -->
+	<complexType name="Sim">
+			<sequence>
+						<element  name="name" type="string" maxOccurs="1" minOccurs="1"/>
+						<element  name="vendor" type="string" maxOccurs="1" minOccurs="1"/>
+						<element  name="price" type="float" maxOccurs="1" minOccurs="1"/>
+						<element  name="sid" type="string" maxOccurs="1" minOccurs="1"/>
+						<element  name="photo" type="base64Binary" maxOccurs="1" minOccurs="0"/>
+						<element  name="description" type="string" maxOccurs="1" minOccurs="0"/>
+						<element  name="type" type="tns:SimType" maxOccurs="1" minOccurs="1"/>
+			</sequence>
+	</complexType>
+	
+	<simpleType name="SimType">
+		<restriction base="string">
+			<enumeration value="2G" />
+			<enumeration value="3G" />
+			<enumeration value="4G" />
+		</restriction>
+	</simpleType>
+</schema>
