@@ -49,9 +49,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <jsp:include page="dashboard-options.jsp"/>
 <!--//team-->
 
-<!-- our blog -->
-<jsp:include page="../common/bank-news.jsp"/>
-<!-- //our blog -->
 
 <!-- modal -->
 	<div class="modal about-modal fade" id="myModal" tabindex="-1" role="dialog">

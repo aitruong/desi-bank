@@ -13,6 +13,16 @@ public class PayeeModel {
 	private Timestamp dom;
 	private String remarks;
 	private String status;
+	private int urn;
+	
+
+	public int getUrn() {
+		return urn;
+	}
+
+	public void setUrn(int urn) {
+		this.urn = urn;
+	}
 
 	public Timestamp getDoe() {
 		return doe;
@@ -90,7 +100,9 @@ public class PayeeModel {
 	public String toString() {
 		return "PayeeModel [id=" + id + ", payeeAccountNo=" + payeeAccountNo + ", payeeName=" + payeeName
 				+ ", payeeNickName=" + payeeNickName + ", customerId=" + customerId + ", doe=" + doe + ", dom=" + dom
-				+ ", remarks=" + remarks + ", status=" + status + "]";
+				+ ", remarks=" + remarks + ", status=" + status + ", urn=" + urn + "]";
 	}
+
+
 
 }

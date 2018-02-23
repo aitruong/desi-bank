@@ -46,11 +46,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="blog-heading">
 			<h3  style="text-align: left;font-size: 20px;display: inline;" >Add Payee Page</h3>
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			<img alt="" src="${pageContext.request.contextPath}/images/add-payee.png" style="height: 80px;"/>
+			<img alt="" src="${pageContext.request.contextPath}/images/add-payee.png" style="height: 40px;"/>
 			<hr/>
-		<spring:form method="POST" commandName="addpayee" action="${pageContext.request.contextPath}/customer/confirmPayee.htm">
+		<spring:form method="POST" 
+					commandName="addpayee" 
+							action="${pageContext.request.contextPath}/customer/confirmPayee.htm">
 			<table class="table" style="width: 80%;">
- 
       <tr>
       <td>Account Number</td>
 		<td><input type="text"  id="payeeAccountNo" name="payeeAccountNo" class="form-control"  style="background-color: #d9edf7;margin-left: 20px;width: 350px;color:black;"></td>
@@ -77,18 +78,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       
            <tr>
 		<td colspan="2" style="text-align: right;">
-			<input type="submit" name="addPayee" style=" color: #FFFFFF;
-    background: #ffb900;
-    border: 2px solid #ffb900;
-    text-transform: uppercase;
-    padding: .2em 1em;
-    font-size: 1.3em;
-    font-family: 'Ropa Sans', sans-serif;" value="Add Payee" id="addPayee">
+				<button type="submit" class="btn btn-info" id="addPayee" name="addPayee">Add Payee</button>
 		</td>
       </tr>
     </tbody>
   </table>			
   </spring:form>
+  <br/>
 		</div>
 	</div>
 </section>		

@@ -48,9 +48,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
      </div>
 	
     <div style="float: right;">
-     		<button type="button" class="btn btn-info">Add Payee</button>
+     				<a href="${pageContext.request.contextPath}/customer/addPayee.htm"><button type="button" class="btn btn-info">Add Payee</button></a>
      </div>
   <br/><br/>
+  <span style="color:green;font-size: 16px;text-transform: none; ">${message}</span>
  <table class="table table-bordered" style="margin-top: 10px;">
         <thead>
             <tr>
@@ -70,10 +71,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                  <td>${item.payeeNickName }</td>
                    <td>${item.payeeAccountNo }</td>
                     <td>Saving</td>
-                    <td>
-                    <img src="${pageContext.request.contextPath}/images/icon/reject.png">
+                    <td style="width: 80px;">
+                    <img src="${pageContext.request.contextPath}/images/delete.png" style="height: 30px;">
                     &nbsp;&nbsp;&nbsp;
-                    <img src="${pageContext.request.contextPath}/images/icon/approve.png">
                     </td>
             </tr>
             </c:forEach>

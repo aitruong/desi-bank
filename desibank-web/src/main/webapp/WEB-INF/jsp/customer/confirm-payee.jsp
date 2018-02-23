@@ -75,13 +75,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       
            <tr>
 		<td colspan="2" style="text-align: right;">
-			<input type="submit" name="confirmPayee" style=" color: #FFFFFF;
-    background: #ffb900;
-    border: 2px solid #ffb900;
-    text-transform: uppercase;
-    padding: .2em 1em;
-    font-size: 1.3em;
-    font-family: 'Ropa Sans', sans-serif;" value="Confirm Payee" id="confirmPayee">
+			<button type="submit" class="btn btn-info" id="confirmPayee" name="confirmPayee">Confirm Payee</button>
 		</td>
       </tr>
     </tbody>

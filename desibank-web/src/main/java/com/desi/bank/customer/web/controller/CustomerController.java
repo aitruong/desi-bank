@@ -368,39 +368,6 @@ public class CustomerController {
 		return "miniStatement";
 	}
 	
-	
-	@RequestMapping(value = "customer/addPayee.htm", method = RequestMethod.GET)  
-	public String addPayee(HttpSession session,Model model) {
-		UserSessionVO userSessionVO= (UserSessionVO) session.getAttribute("userSessionVO");
-		String userid=userSessionVO.getLoginid();
-		String email = customerService.findEmailByUserid(userid);
-		AddPayee addPayee=new AddPayee();
-		addPayee.setEmail(email);
-		model.addAttribute("addpayee", addPayee);
-		 return DesiBankNavigationConstant.CUSTOMER_BASE+DesiBankNavigationConstant.CUSTOMER_ADD_PAYEE_PAGE;
-	}
-	
-	@RequestMapping(value = "customer/confirmPayee.htm", method = RequestMethod.POST)
-	public String confirmPayee(@Valid @ModelAttribute("addpayee") AddPayee addpayee,BindingResult result,Model model,HttpSession session ) { 
-			if (result.hasErrors()) {
-				return "addPayee";	
-			}	
-			PayeeInfo payee = new PayeeInfo();
-			payee.setCustomerId(((UserSessionVO)session.getAttribute("userSessionVO")).getLoginid());
-			payee.setPayeeAccountNo(addpayee.getPayeeAccountNo());
-			payee.setPayeeName(addpayee.getPayeeName());
-			payee.setPayeeNickName(addpayee.getPayeeNickName());
-			int random = (int) (Math.random()*1000);
-			mailServiceImpl.sendMail("DesiBank", addpayee.getEmail(),"Add payee submission number", "Confirmation code:"+random);
-			model.addAttribute("addPayeeInfo", payee);
-			model.addAttribute("code",random);
-			session.setAttribute("payee", payee);
-			//return "confirmPayee";
-			 return DesiBankNavigationConstant.CUSTOMER_BASE+DesiBankNavigationConstant.CUSTOMER_CONFIRM_PAYEE_PAGE;
-			//return "addPayee";
-	}
-	
-	
 
 	
 	@RequestMapping(value = "customer/transferMoney.htm", method = RequestMethod.GET)

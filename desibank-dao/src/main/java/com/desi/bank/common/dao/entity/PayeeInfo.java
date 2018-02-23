@@ -22,9 +22,18 @@ public class PayeeInfo implements Serializable{
 	private Timestamp dom;
 	private String remarks;
 	private String status;
+	private int urn;
 	
 	public String getCustomerId() {
 		return customerId;
+	}
+
+	public int getUrn() {
+		return urn;
+	}
+
+	public void setUrn(int urn) {
+		this.urn = urn;
 	}
 
 	public void setCustomerId(String customerId) {
