@@ -4,6 +4,11 @@ import java.util.List;
 
 import com.desi.bank.customer.web.controller.form.CustomerForm;
 
+/**
+ * 
+ * @author VC1
+ *
+ */
 public interface AdminDao {
 
 	public List<CustomerForm> listUnapprovedCustomers();
