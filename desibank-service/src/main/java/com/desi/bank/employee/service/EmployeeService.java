@@ -21,4 +21,5 @@ public interface EmployeeService {
 	public String saveRegistrationLink(RegistrationLinksForm registrationLinksForm);
 	public List<CustomerForm> findPendingSavingAccountApprovalRequests();
 	public List<CustomerForm> findSavingApprovedAccount();
+	public String lockUnlockCustomer(String loginid, String status);
 }

@@ -23,5 +23,6 @@ public interface EmployeeDao {
 	public CustomerSavingEntity findCustomerSavingEnquiryById(int getCsaid);
 	public List<Customer> findPendingSavingAccountApprovalRequests();
 	public List<Customer> findSavingApprovedAccount();
+	public String lockUnlockCustomer(String loginid, String status);
 
 }

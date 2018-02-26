@@ -90,8 +90,12 @@ function openApprovalPopup(name,email,csaid){
 	}); //end of click
 		
 		
-		$("#close").click(function(){
+		$("#rejectClose").click(function(){
 			$("#rejectReuqestModel").modal("hide");
+		});
+	
+		$("#approveClose").click(function(){
+			$("#approveReuqestModel").modal("hide");
 		});
 		$(".scroll").click(function(event){		
 			event.preventDefault();
@@ -158,6 +162,60 @@ function openApprovalPopup(name,email,csaid){
                     </td>
             </tr>
             </c:forEach>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                 <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+                  <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                 <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+                  <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                 <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+                  <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                 <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+                  <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                 <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+                  <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                 <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
         </tbody>
     </table>
     </div>
@@ -183,9 +241,6 @@ function openApprovalPopup(name,email,csaid){
 <!-- //modal -->
 	
 
-<!-- footer -->
-<jsp:include page="../common/footer.jsp"/>
-<!-- //footer -->
 
 <!-- copyright -->
 <jsp:include page="../common/copyright.jsp"/>
@@ -361,7 +416,7 @@ function openApprovalPopup(name,email,csaid){
 									<tr>
 									<td>&nbsp;</td>
 									<td>&nbsp;
-									<input type="reject" name="reject" style=" color: #FFFFFF;
+									<input type="button" name="reject" style=" color: #FFFFFF;
     background: #ffb900;
     border: 2px solid #ffb900;
     text-transform: uppercase;
@@ -369,7 +424,7 @@ function openApprovalPopup(name,email,csaid){
     font-size: 1.3em;
     font-family: 'Ropa Sans', sans-serif;" value="Reject Application"  id="rejectApplication">
     
-    	<input type="button" id="close" style=" color: #FFFFFF;
+    	<input type="button" id="rejectClose" style=" color: #FFFFFF;
     background: #ffb900;
     border: 2px solid #ffb900;
     text-transform: uppercase;
@@ -462,7 +517,7 @@ function openApprovalPopup(name,email,csaid){
     font-size: 1.3em;
     font-family: 'Ropa Sans', sans-serif;" value="Approve Application"  id="approveApplication">
     
-    	<input type="button" id="close" style=" color: #FFFFFF;
+    	<input type="button" id="approveClose" style=" color: #FFFFFF;
     background: #ffb900;
     border: 2px solid #ffb900;
     text-transform: uppercase;

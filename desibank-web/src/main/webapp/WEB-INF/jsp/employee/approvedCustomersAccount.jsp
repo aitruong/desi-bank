@@ -24,8 +24,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //fonts -->
 <!-- scrolling script -->
 <script type="text/javascript">
+		var contextPath="${pageContext.request.contextPath}";
+</script>
+<script type="text/javascript">
 
-
+function lockUnlockUser(loginid,row){
+	var imageName=$("#lockunlockIcon_"+row).attr("src");
+	console.log(")))))))))))@&&&&&&&&&&&%%%%%%%%%%%%%%%%% imageName - "+imageName);
+	var lockStatus="";
+	if(imageName.endsWith("unlocked.png")){
+		lockStatus="lock";
+	}else{
+		lockStatus="unlock";
+	}
+	console.log(")))))))))))@&&&&&&&&&&&%%%%%%%%%%%%%%%%% lockStatus - "+lockStatus);
+	$.ajax({url:contextPath+"/employee/lockUnlockCustomer.htm?lockStatus="+lockStatus+"&loginid="+loginid,success:function(jsonData) {  //data= this.responseText
+			console.log(jsonData);
+			if(jsonData=='success') {
+					if("unlock"==lockStatus){
+							$("#lockunlockIcon_"+row).attr("src","${pageContext.request.contextPath}/images/icon/unlocked.png");
+							console.log("unlocked.png ..................... =  "+lockStatus);
+					}else{
+						console.log("locked.png ..................... =  "+lockStatus);
+						$("#lockunlockIcon_"+row).attr("src","${pageContext.request.contextPath}/images/icon/locked.png");
+					}
+			}
+	}
+   });
+}
 
 function openApprovalPopup(name,email,csaid){
 		$("#acustomerName").val(name);
@@ -123,6 +149,7 @@ function openApprovalPopup(name,email,csaid){
             <tr>
                 <th>Row</th>
                 <th>Name</th>
+                   <th>LoginId</th>
                 <th>Email</th>
                 <th>Mobile</th>
                  <th>Location</th>
@@ -136,19 +163,19 @@ function openApprovalPopup(name,email,csaid){
             <tr id="${item.userid}">
                 <td>${p.count}</td>
                 <td>${item.name }</td>
+                  <td>${item.userid}</td>
                <td>${item.email }</td>
                  <td>${item.mobile }</td>
                    <td>${item.address }</td>
                    <td>${item.jobTitle }</td>
                     <td><img src="${pageContext.request.contextPath}/findImageByUserid.htm?userid=${item.userid}" style="height: 42px;"></td>
                     <td>
-                      <a href="javascript:openRejectPopup('${item.name }','${item.email }',${item.userid});">
-                    <img src="${pageContext.request.contextPath}/images/icon/reject.png">
-                      </a>
-                    &nbsp;&nbsp;&nbsp;
-                       <a href="javascript:openApprovalPopup('${item.name }','${item.email }',${item.userid});">
-                    <img src="${pageContext.request.contextPath}/images/icon/approve.png">
-                    </a>
+                    	  	<c:if test="${item.islocked == false}">
+                   			  			<a href="javascript:lockUnlockUser('${item.userid}',${p.count});"><img id="lockunlockIcon_${p.count}" src="${pageContext.request.contextPath}/images/icon/unlocked.png"></a>
+                   			  </c:if>
+                   			  <c:if test="${item.islocked == true}">
+                 			   			<a href="javascript:lockUnlockUser('${item.userid}',${p.count});"><img  id="lockunlockIcon_${p.count}" src="${pageContext.request.contextPath}/images/icon/locked.png"></a>
+                 			   </c:if>
                     </td>
             </tr>
             </c:forEach>
@@ -161,6 +188,7 @@ function openApprovalPopup(name,email,csaid){
                    <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
+                       <td>&nbsp;</td>
             </tr>
             
                 <tr>
@@ -172,6 +200,7 @@ function openApprovalPopup(name,email,csaid){
                    <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
+                       <td>&nbsp;</td>
             </tr>
             
                 <tr>
@@ -183,6 +212,7 @@ function openApprovalPopup(name,email,csaid){
                    <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
+                       <td>&nbsp;</td>
             </tr>
                 <tr>
                 <td>&nbsp;</td>
@@ -193,9 +223,11 @@ function openApprovalPopup(name,email,csaid){
                    <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
+                       <td>&nbsp;</td>
             </tr>
                 <tr>
                 <td>&nbsp;</td>
+                   <td>&nbsp;</td>
                 <td>&nbsp;</td>
                <td>&nbsp;</td>
                  <td>&nbsp;</td>
@@ -204,26 +236,7 @@ function openApprovalPopup(name,email,csaid){
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
             </tr>
-                <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-               <td>&nbsp;</td>
-                 <td>&nbsp;</td>
-                   <td>&nbsp;</td>
-                   <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-            </tr>
-                <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-               <td>&nbsp;</td>
-                 <td>&nbsp;</td>
-                   <td>&nbsp;</td>
-                   <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-            </tr>
+         
         </tbody>
     </table>
     </div>

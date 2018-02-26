@@ -2,6 +2,8 @@ package com.desi.bank.customer.web.controller.form;
 
 import java.util.Arrays;
 
+import javax.persistence.Transient;
+
 /**
  * 
  * @author 
@@ -37,6 +39,17 @@ public class CustomerForm {
     private byte[] image;
     
     private String role;
+    
+private boolean islocked;
+
+	
+    public boolean isIslocked() {
+		return islocked;
+	}
+
+	public void setIslocked(boolean islocked) {
+		this.islocked = islocked;
+	}
 	
 	public String getRole() {
 		return role;

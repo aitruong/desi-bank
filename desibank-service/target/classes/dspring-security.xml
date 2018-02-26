@@ -35,11 +35,11 @@
                 authentication-failure-handler-ref="LoginFailureUserAuthHandler"   
                 authentication-success-handler-ref="LoginSuccessUserAuthHandler"/>				
 		
-		<security:logout invalidate-session="true" logout-success-url="/auth/slogout.htm" logout-url="/auth/logout.htm"/>		
+	<!-- 	<security:logout invalidate-session="true" logout-success-url="/auth/slogout.htm" logout-url="/auth/logout.htm"/>		
 		
 			<security:session-management invalid-session-url="/auth/sessionTimeoutPage.htm">
 							<security:concurrency-control error-if-maximum-exceeded="true" max-sessions="1"/>
-			</security:session-management> 
+			</security:session-management>  -->
 		
 	</security:http>
 	

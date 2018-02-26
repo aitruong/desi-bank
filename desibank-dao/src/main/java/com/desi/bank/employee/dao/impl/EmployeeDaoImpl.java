@@ -1,6 +1,7 @@
 package com.desi.bank.employee.dao.impl;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -15,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.desi.bank.common.dao.AppDaoConstant;
 import com.desi.bank.common.dao.entity.Customer;
 import com.desi.bank.common.dao.entity.CustomerSavingEntity;
+import com.desi.bank.common.dao.entity.Login;
+import com.desi.bank.constant.DesiBankApplicationRole;
 import com.desi.bank.employee.dao.EmployeeDao;
 import com.desi.bank.employee.dao.entity.RegistrationLinksEntity;
 import com.desi.bank.employee.dao.entity.RejectSavingRequestEntity;
@@ -85,6 +88,24 @@ public class EmployeeDaoImpl extends HibernateDaoSupport implements EmployeeDao 
 		return "success";
 	}
 	
+	@Transactional(propagation=Propagation.REQUIRED)
+	@Override
+	public String  lockUnlockCustomer(String loginid,String status) {
+		String resultStatus="success";
+		List<Login>  loginList=(List<Login>)super.getHibernateTemplate().find("from  Login where loginid='"+loginid+"'") ;
+		if(loginList!=null && loginList.size()==1){
+			   if("lock".equals(status)){
+				   loginList.get(0).setLocked("yes");
+			   }else if("unlock".equals(status)){
+				   loginList.get(0).setLocked("no");
+			   }else{
+					resultStatus="fail";
+			   }
+		}else{
+			resultStatus="fail";
+		}
+		return resultStatus;
+	}
 	@Override
 	public List<CustomerSavingEntity>  findPendingSavingAccountRequests() {
 		List<CustomerSavingEntity>  customerSavingEntityList=(List<CustomerSavingEntity>)super.getHibernateTemplate().find("from  CustomerSavingEntity where status='"+AppDaoConstant.PENDING_STATUS+"'") ;
@@ -99,7 +120,24 @@ public class EmployeeDaoImpl extends HibernateDaoSupport implements EmployeeDao 
 	
 	@Override
 	public List<Customer>  findSavingApprovedAccount() {
-		List<Customer>  customerSavingEntityApprovalList=(List<Customer>)super.getHibernateTemplate().find("from  Customer where approved='"+AppDaoConstant.YES_STATUS+"'") ;
+		List<Customer>  customerSavingEntityApprovalList=(List<Customer>)super.getHibernateTemplate().find("from  Customer where   approved='"+AppDaoConstant.YES_STATUS+"'") ;
+		 Iterator<Customer>  it=customerSavingEntityApprovalList.iterator();
+		while(it.hasNext()){
+			Customer customer=it.next();
+			List<Login>  loginEntityList=(List<Login>)super.getHibernateTemplate().find("from  Login  where loginid='"+customer.getUserid()+"'") ;
+			if(loginEntityList!=null && loginEntityList.size()==1){
+				if(DesiBankApplicationRole.CUSTOMER.getValue().equalsIgnoreCase(loginEntityList.get(0).getRole())){
+					if(loginEntityList.get(0).getLocked().equalsIgnoreCase(AppDaoConstant.NO_STATUS)) {
+							customer.setIslocked(false);
+					}
+					else {
+						customer.setIslocked(true);
+					}		
+				}else{
+					it.remove();
+				}
+			}
+		}
 		return customerSavingEntityApprovalList;
 	}
 	

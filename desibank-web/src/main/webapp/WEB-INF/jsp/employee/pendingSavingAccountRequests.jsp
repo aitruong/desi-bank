@@ -80,7 +80,8 @@ function openApprovalPopup(name,email,csaid){
 					//data is JavaScript object against JSON response coming fromm the server
 						console.log(jsonData);
 						if(jsonData=='success') {
-							var  pcsaid =$("#pcsaid").val();
+							//apcsaid 
+							var  pcsaid =$("#apcsaid").val();
 							$("#"+pcsaid).hide();
 							$("#approveReuqestModel").modal("hide");
 						}
@@ -90,8 +91,11 @@ function openApprovalPopup(name,email,csaid){
 	}); //end of click
 		
 		
-		$("#close").click(function(){
-			$("#rejectReuqestModel").modal("hide");
+		$("#rejectClose").click(function(){
+		  	$("#rejectReuqestModel").modal("hide");
+		});
+		$("#approveClose").click(function(){
+		  	$("#approveReuqestModel").modal("hide");
 		});
 		$(".scroll").click(function(event){		
 			event.preventDefault();
@@ -431,7 +435,7 @@ function openApprovalPopup(name,email,csaid){
     font-size: 1.3em;
     font-family: 'Ropa Sans', sans-serif;" value="Reject Application"  id="rejectApplication">
     
-    	<input type="button" id="close" style=" color: #FFFFFF;
+    	<input type="button" id="rejectClose" style=" color: #FFFFFF;
     background: #ffb900;
     border: 2px solid #ffb900;
     text-transform: uppercase;
@@ -524,7 +528,7 @@ function openApprovalPopup(name,email,csaid){
     font-size: 1.3em;
     font-family: 'Ropa Sans', sans-serif;" value="Approve Application"  id="approveApplication">
     
-    	<input type="button" id="close" style=" color: #FFFFFF;
+    	<input type="button" id="approveClose" style=" color: #FFFFFF;
     background: #ffb900;
     border: 2px solid #ffb900;
     text-transform: uppercase;

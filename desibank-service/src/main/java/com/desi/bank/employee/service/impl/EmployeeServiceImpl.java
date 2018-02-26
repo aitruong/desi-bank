@@ -52,6 +52,10 @@ public class EmployeeServiceImpl  implements EmployeeService{
 		return  status;
 	}
 	
+	@Override
+	public String lockUnlockCustomer(String loginid, String status){
+		 return employeeDao.lockUnlockCustomer(loginid, status);
+	} 
 	
 	@Override
 	public List<CustomerSavingForm>  findPendingSavingAccountRequests() {

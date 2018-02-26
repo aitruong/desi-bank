@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * 
@@ -37,10 +38,19 @@ public class Customer {
 	private String accountNum;
 	private String photoName;
 	private byte[] image;
+	private boolean islocked;
 
 	
-	
-    @Column(columnDefinition="longblob")
+	@Transient
+    public boolean isIslocked() {
+		return islocked;
+	}
+
+	public void setIslocked(boolean islocked) {
+		this.islocked = islocked;
+	}
+
+	@Column(columnDefinition="longblob")
 	public byte[] getImage() {
 		return image;
 	}
