@@ -40,7 +40,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="136" splitType="Stretch">
+		<band height="126" splitType="Stretch">
 			<image>
 				<reportElement x="0" y="0" width="164" height="126" uuid="1c003177-754c-448f-8ce1-16868856f545"/>
 				<imageExpression><![CDATA["C:/Users/VC1/Desktop/customer.jpg"]]></imageExpression>
@@ -79,7 +79,7 @@
 				<reportElement style="Column header" x="160" y="0" width="160" height="15" forecolor="#F5F2EB" uuid="afa395eb-e354-423f-97eb-c56dea46e012">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38401b1e-dab4-4bd6-b665-1a0ab0567338"/>
 				</reportElement>
-				<text><![CDATA[FIRSTNAME]]></text>
+				<text><![CDATA[Name]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="320" y="0" width="160" height="15" forecolor="#736343" uuid="44c0362c-b28e-400e-8780-54f5a2b4e206">
@@ -112,7 +112,7 @@
 					<textFieldExpression><![CDATA[$F{ID}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" x="160" y="0" width="160" height="15" uuid="69c0dc22-ee35-4662-89f2-bcd96c1c5272">
+					<reportElement style="Detail" x="160" y="10" width="160" height="5" uuid="69c0dc22-ee35-4662-89f2-bcd96c1c5272">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38401b1e-dab4-4bd6-b665-1a0ab0567338"/>
 					</reportElement>
 					<textFieldExpression><![CDATA[$F{FIRSTNAME}]]></textFieldExpression>
