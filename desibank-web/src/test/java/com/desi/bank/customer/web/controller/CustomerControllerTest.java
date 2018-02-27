@@ -1,4 +1,4 @@
-package com.desi.bank.customer.web.controller;
+/*package com.desi.bank.customer.web.controller;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -60,12 +60,12 @@ public class CustomerControllerTest {
 			mockMvc = MockMvcBuilders.standaloneSetup(customerController).build();
     }
 	
-/*	@RequestMapping(value = "allCustomers.htm", method = RequestMethod.GET)
+	@RequestMapping(value = "allCustomers.htm", method = RequestMethod.GET)
 	public String allCustomers(Model model) {
 		 List<CustomerForm> customerForms=customerService.findCustomers();
 		 model.addAttribute("customerForms",customerForms);
 		return "customers";
-	}*/
+	}
 
 	@Test
 	public void testAllCustomers() {
@@ -161,12 +161,13 @@ public class CustomerControllerTest {
 		}
 		
 	}
-	/*@RequestMapping(value = "/customer/showCustomerAccountsSummary.htm", method = RequestMethod.GET)
+	@RequestMapping(value = "/customer/showCustomerAccountsSummary.htm", method = RequestMethod.GET)
 	public String customerAccountSummary(Model model, HttpSession session ) {
 		String userid = ((UserSessionVO)session.getAttribute("userSessionVO")).getLoginid();
 		 List<CustomerAccountInfoVO> customerAccountList=customerService.getAccountDetails(userid);
 		 model.addAttribute("customerAccountList",customerAccountList);
 		 return DesiBankNavigationConstant.CUSTOMER_BASE+DesiBankNavigationConstant.CUSTOMER_ACCOUNT_SUMMARY_PAGE;
 	}
-*/
+
 }
+*/

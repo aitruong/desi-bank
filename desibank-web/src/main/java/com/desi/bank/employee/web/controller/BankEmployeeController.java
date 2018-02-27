@@ -30,8 +30,10 @@ import com.desi.bank.customer.web.controller.form.CustomerForm;
 import com.desi.bank.customer.web.controller.form.CustomerSavingForm;
 import com.desi.bank.data.listener.DesiBankDataListener;
 import com.desi.bank.data.util.DesiBankUtils;
+import com.desi.bank.email.service.EmailMessageSenderService;
 import com.desi.bank.email.service.EmailVO;
 import com.desi.bank.email.service.ICustomerEmailService;
+import com.desi.bank.email.service.TestVO;
 import com.desi.bank.employee.service.EmployeeService;
 import com.desi.bank.employee.web.controller.form.ApplicationMessageResponse;
 import com.desi.bank.employee.web.controller.form.RegistrationLinksForm;
@@ -55,6 +57,11 @@ public class BankEmployeeController {
 	
 	@Value("${registration.link.validity.hrs}")
 	  private String  linkvalidity;
+	
+	@Autowired
+	@Qualifier ("EmailMessageSenderService")
+	private EmailMessageSenderService emailMessageSenderService;
+	
 	
 	@Autowired
 	@Qualifier ("EmployeeServiceImpl")
@@ -96,7 +103,14 @@ public class BankEmployeeController {
         message.setSubject("Regarding rejection of your openining saving account request!");
         message.setText("Reason of rejection :  = "+rejectSavingRequestForm.getReason());
         mailSender.send(message);*/
-		
+		TestVO testVO=new TestVO();
+		testVO.setFrom("nagen@gmail.com");
+		testVO.setName("DesiBank");
+		testVO.setSubject("Test Email");
+		testVO.setMessage("Testing testing testing");
+		testVO.setTo("nagendra@gmail.com");
+		emailMessageSenderService.sendSampleData(testVO);
+		System.out.println("___message has beeb send to the message broker!~~~~~~~~~~~~~~~~~~~~~~");
 		EmailVO mail=new EmailVO();
 		mail.setBaseUrl(DesiBankUtils.getServerBaseURL(request));
 		mail.setFrom("desibankproject@gmail.com");
