@@ -104,13 +104,13 @@ public class BankEmployeeController {
         message.setText("Reason of rejection :  = "+rejectSavingRequestForm.getReason());
         mailSender.send(message);*/
 		TestVO testVO=new TestVO();
-		testVO.setFrom("nagen@gmail.com");
+		testVO.setFrom("desibankproject@gmail.com");
 		testVO.setName("DesiBank");
-		testVO.setSubject("Test Email");
+		testVO.setSubject("Regarding Message Rejection");
 		testVO.setMessage("Testing testing testing");
-		testVO.setTo("nagendra@gmail.com");
+		testVO.setTo(rejectSavingRequestForm.getEmail());
 		emailMessageSenderService.sendSampleData(testVO);
-		System.out.println("___message has beeb send to the message broker!~~~~~~~~~~~~~~~~~~~~~~");
+		/*System.out.println("___message has beeb send to the message broker!~~~~~~~~~~~~~~~~~~~~~~");
 		EmailVO mail=new EmailVO();
 		mail.setBaseUrl(DesiBankUtils.getServerBaseURL(request));
 		mail.setFrom("desibankproject@gmail.com");
@@ -121,7 +121,7 @@ public class BankEmployeeController {
 		if(logger.isDebugEnabled()) {
 			   logger.debug("mail = "+mail);
 		}
-		customerEmailService.sendRegistrationEmail(mail);
+		customerEmailService.sendRegistrationEmail(mail);*/
 		 return "success";
 	}
 	
