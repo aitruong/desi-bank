@@ -22,22 +22,22 @@
 	-->
 	<bean id="pdfReport"
 	   class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
-		p:url="classpath:report5.jrxml"
+		p:url="classpath:customer-report.jrxml"
 		p:reportDataKey="jasperDataSource" />
 
 	<bean id="xlsReport"
 	   class="org.springframework.web.servlet.view.jasperreports.JasperReportsXlsView"
-		p:url="classpath:report5.jrxml"
+		p:url="classpath:customer-report.jrxml"
 		p:reportDataKey="jasperDataSource" />
 	
 	<bean id="htmlReport"
 	   class="org.springframework.web.servlet.view.jasperreports.JasperReportsHtmlView"
-		p:url="classpath:report5.jrxml" 
+		p:url="classpath:customer-report.jrxml" 
 		p:reportDataKey="jasperDataSource" />
 	
 	<bean id="csvReport"
 	   class="org.springframework.web.servlet.view.jasperreports.JasperReportsCsvView"
-		p:url="classpath:report5.jrxml"
+		p:url="classpath:customer-report.jrxml"
 		p:reportDataKey="jasperDataSource" />
 		
 </beans>

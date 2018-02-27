@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Simple_Blue_1" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="339292c7-0433-47a5-9eb8-70bc954f1915">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sample DB"/>
+	<queryString language="SQL">
+		<![CDATA[select * from orders;]]>
+	</queryString>
+	<field name="ORDERID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ORDERID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ORDERS"/>
+	</field>
+	<field name="ORDERDATE" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="ORDERDATE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ORDERS"/>
+	</field>
+	<field name="SHIPPEDDATE" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="SHIPPEDDATE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ORDERS"/>
+	</field>
+	<field name="SHIPADDRESS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="SHIPADDRESS"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ORDERS"/>
+	</field>
+	<field name="SHIPCOUNTRY" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="SHIPCOUNTRY"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ORDERS"/>
+	</field>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{ORDERID}]]></groupExpression>
+		<groupHeader>
+			<band height="33">
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="0" width="100" height="32" forecolor="#666666" backcolor="#E6E6E6" uuid="5ae014fd-a7d5-4a31-89ad-0b025bcfbb67"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[ORDERID]]></text>
+				</staticText>
+				<textField>
+					<reportElement mode="Opaque" x="100" y="0" width="455" height="32" forecolor="#006699" backcolor="#E6E6E6" uuid="ccc9f4cf-4922-4752-bb25-f05ca6744021"/>
+					<textElement>
+						<font size="24" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ORDERID}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="-20" y="32" width="595" height="1" forecolor="#666666" uuid="9384ed74-cbc2-42bf-93a4-58ada9c72af7"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group2">
+		<groupExpression><![CDATA[$F{ORDERDATE}]]></groupExpression>
+		<groupHeader>
+			<band height="32">
+				<textField>
+					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="e0b31fc3-bc64-4ae9-98a5-0330755f49f6"/>
+					<textElement>
+						<font size="22" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ORDERDATE}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="b70b6b3f-7161-42ef-955d-147291fe0ee1"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[ORDERDATE]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group3">
+		<groupExpression><![CDATA[$F{SHIPPEDDATE}]]></groupExpression>
+		<groupHeader>
+			<band height="32">
+				<textField>
+					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="37df5e7e-f174-4a03-ab1e-d225bfe87460"/>
+					<textElement>
+						<font size="20" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{SHIPPEDDATE}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="6db48439-2ad7-4459-bab7-3069b5ce0331"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[SHIPPEDDATE]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group4">
+		<groupExpression><![CDATA[$F{SHIPADDRESS}]]></groupExpression>
+		<groupHeader>
+			<band height="32">
+				<textField>
+					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="bfc7ed76-6a4d-4c8f-a66f-3d2285e9b9bc"/>
+					<textElement>
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{SHIPADDRESS}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="ce99ed3e-cb1c-403d-9e9f-aefd877103f7"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[SHIPADDRESS]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="SHIPCOUNTRY">
+		<groupExpression><![CDATA[$F{SHIPCOUNTRY}]]></groupExpression>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="668eac2d-f87a-4578-bf26-984adad00ba8"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="e933db09-7128-4e7b-8a4f-34334f8f2f18"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TITLE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="11361752-5a0d-4a6a-a119-3531bb9b8eb1"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Add a description here]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="b1f04da0-44d1-4f60-ab79-c70e7f788b02"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="edb2f086-d787-4d5d-abff-6befe6dfb76e"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="f25082e7-16ab-4801-9772-ea81b1f8b3b2"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="9a6e3fb5-28e7-499c-9416-dc31705a7fd7"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="735bd202-8f10-4f26-8a8a-52b5501519ab"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report5" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1a966231-30da-4a42-964e-4b450b27c131">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report5" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -28,14 +28,14 @@
 	<field name="name" class="java.lang.String"/>
 	<field name="mobile" class="java.lang.String"/>
 	<field name="email" class="java.lang.String"/>
-	<field name="age" class="java.lang.Integer"/>
+	<field name="gender" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="47" splitType="Stretch">
 			<staticText>
-				<reportElement x="238" y="27" width="167" height="20" forecolor="#FF0000" uuid="9e104a34-8784-44bd-9038-77fe0040f3dc"/>
+				<reportElement x="238" y="27" width="167" height="20" forecolor="#FF0000" />
 				<textElement>
 					<font fontName="Gungsuh" size="14" isBold="true"/>
 				</textElement>
@@ -46,86 +46,86 @@
 	<pageHeader>
 		<band height="32" splitType="Stretch">
 			<image>
-				<reportElement stretchType="RelativeToBandHeight" x="10" y="-60" width="562" height="92" uuid="5d49aa9f-aba1-4beb-b9e9-88259d965fd7"/>
-				<imageExpression><![CDATA["6.jpg"]]></imageExpression>
+				<reportElement stretchType="RelativeToBandHeight" x="10" y="-60" width="562" height="92" />
+				<imageExpression><![CDATA["customer.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="50" splitType="Stretch">
 			<staticText>
-				<reportElement x="10" y="30" width="61" height="20" uuid="139849bb-02c0-481f-8780-e1f25e6d651f"/>
+				<reportElement x="10" y="30" width="61" height="20"/>
 				<textElement>
 					<font fontName="Arial Black" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Userid]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="116" y="30" width="71" height="20" uuid="7e699529-3e6e-4642-a836-6f7c4e314cc0"/>
+				<reportElement x="116" y="30" width="71" height="20"/>
 				<textElement>
 					<font fontName="Arial Black" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Name]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="263" y="30" width="100" height="20" uuid="b201a78c-6f0a-4c75-965b-2c8e36758d45"/>
+				<reportElement x="263" y="30" width="100" height="20"/>
 				<textElement>
 					<font fontName="Arial Black" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Mobile]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="374" y="30" width="100" height="20" uuid="e7c86b6e-0c9f-4e6d-b99b-94f2040a8c5f"/>
+				<reportElement x="374" y="30" width="100" height="20"/>
 				<textElement>
 					<font fontName="Arial Black" size="12"/>
 				</textElement>
 				<text><![CDATA[Email]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="489" y="30" width="83" height="20" uuid="18ba8a1e-33b2-4f11-bd9e-e8cd07cf3060"/>
+				<reportElement x="489" y="30" width="83" height="20" />
 				<textElement>
 					<font fontName="Arial Black" size="12"/>
 				</textElement>
-				<text><![CDATA[Age]]></text>
+				<text><![CDATA[Gender]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="20">
 			<textField>
-				<reportElement x="10" y="0" width="100" height="20" uuid="83b87798-ce76-4398-9906-e3b90bf505e8"/>
+				<reportElement x="10" y="0" width="100" height="20"/>
 				<textElement>
 					<font fontName="Arial Rounded MT Bold"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{userid}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="116" y="0" width="112" height="20" isRemoveLineWhenBlank="true" uuid="632e4218-1329-4329-952d-e1f849365342"/>
+				<reportElement stretchType="RelativeToBandHeight" x="116" y="0" width="112" height="20" isRemoveLineWhenBlank="true"/>
 				<textElement>
 					<font fontName="Arial Rounded MT Bold"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="263" y="0" width="100" height="20" uuid="6049ac84-6cc4-438d-9b40-fba465fdcc95"/>
+				<reportElement x="263" y="0" width="100" height="20" />
 				<textElement>
 					<font fontName="Arial Rounded MT Bold"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{mobile}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="374" y="0" width="100" height="20" uuid="7a1e6316-e3e9-4f89-9021-2ac0f7a8d18f"/>
+				<reportElement x="374" y="0" width="100" height="20"/>
 				<textElement>
 					<font fontName="Arial Rounded MT Bold"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="489" y="0" width="83" height="20" uuid="f6190f33-9d94-4a52-85bd-b6fd5c393b2c"/>
+				<reportElement x="489" y="0" width="83" height="20"/>
 				<textElement>
 					<font fontName="Arial Rounded MT Bold"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{age}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{gender}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
