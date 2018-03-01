@@ -59,7 +59,9 @@ public class DesiBankDataListener  implements ServletContextListener{
 			ServletContext servletContext=arg0.getServletContext();
 			ApplicationContext applicationContext=WebApplicationContextUtils.getWebApplicationContext(servletContext);
 			CustomerServiceImpl customerServiceImpl=(CustomerServiceImpl)applicationContext.getBean("CustomerServiceImpl");
-			System.out.println("______trying to know the proxy type..............."+customerServiceImpl.getClass().getName());
+			if(logger.isInfoEnabled()) {
+				logger.info("______trying to know the proxy type..............."+customerServiceImpl.getClass().getName());
+			}
 			UserSessionVO userSessionVO=customerServiceImpl.validateCustomerByUserId("admin");
 			if(userSessionVO.getLoginid()==null) {
 				

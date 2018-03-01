@@ -6,6 +6,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -19,12 +21,15 @@ import com.desi.bank.employee.web.controller.form.ApplicationMessageResponse;
 @Component
 @Path("/customer")
 public class BankCustomerRestApi {
-	
+	/**
+	 * Initiate Logger for this class
+	 */
+	private static final Log logger = LogFactory.getLog(BankCustomerRestApi.class);
 	
 	public BankCustomerRestApi(){
-		System.out.println("_@@)@)@()*!!!!!!!!!!!!!!!!!!!!!!&&&&&&&&&&&BankCustomerRestApi&&&&&&&&&&&(@(@");
-		System.out.println("_@@)@)@()*!!!!!!!!!!!!!!!!!!!!!!&&&&&&&&&&&BankCustomerRestApi&&&&&&&&&&&(@(@");
-		System.out.println("_@@)@)@()*!!!!!!!!!!!!!!!!!!!!!!&&&&&&&&&&&BankCustomerRestApi&&&&&&&&&&&(@(@");
+		if( logger.isDebugEnabled()) {
+			logger.debug("_@@)@)@()*!!!!!!!!!!!!!!!!!!!!!!&&&&&&&&&&&BankCustomerRestApi&&&&&&&&&&&(@(@");
+		}	
 	}
 	
 	

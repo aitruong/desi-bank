@@ -90,6 +90,12 @@ public class BankEmployeeController {
 	
 	@RequestMapping(value="rejectSavingRequest",method=RequestMethod.POST)
 @ResponseBody	public String rejectSavingSavingAccountRequest(@ModelAttribute RejectSavingRequestForm rejectSavingRequestForm,HttpServletRequest request,Model  model){
+		if(logger.isDebugEnabled()) {
+			logger.debug("Coming data from the client "+rejectSavingRequestForm);
+			String userAgent=request.getHeader("User-Agent");
+			logger.debug("UserAgent =  "+userAgent);
+		}
+		
 		String result=employeeService.rejectSavingAccountRequests(rejectSavingRequestForm);
 		ApplicationMessageResponse applicationMessageResponse=new ApplicationMessageResponse();
 		applicationMessageResponse.setStatus(DesiBankConstant.SUCCESS);

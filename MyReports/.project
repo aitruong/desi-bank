@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>MyReports</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>net.sf.jasperreports.builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+		<nature>net.sf.jasperreports.nature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>customer-report_1.jrxml</name>
+			<type>1</type>
+			<location>C:/Users/VC1/workspace_multimodule/desibank-parent/desibank-web/src/main/resources/customer-report.jrxml</location>
+		</link>
+		<link>
+			<name>report5.jrxml</name>
+			<type>1</type>
+			<location>C:/Users/VC1/workspace_multimodule/desibank-parent/desibank-web/src/main/resources/report5.jrxml</location>
+		</link>
+	</linkedResources>
+</projectDescription>

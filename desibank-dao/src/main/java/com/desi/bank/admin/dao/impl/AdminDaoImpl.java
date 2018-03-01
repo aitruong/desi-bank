@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -28,21 +30,18 @@ import com.desi.bank.customer.web.controller.form.CustomerForm;
 @Transactional
 public class AdminDaoImpl extends HibernateDaoSupport implements AdminDao {
 	
+	/**
+	 * Initiate Logger for this class
+	 */
+	private static final Log logger = LogFactory.getLog(AdminDaoImpl.class);
+	
 	private static final int LIMITITEMSPERPAGE = 3;
 	
 	public AdminDaoImpl(){
-		System.out.println("_)@)@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		System.out.println("_)@)@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		System.out.println("_)@)@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		System.out.println("_)@)@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		System.out.println("_)@)@@@@@@@@@@@AdminDaoImpl@@@@@@@@@@@@@@@@");
-		System.out.println("_)@)@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		System.out.println("_)@)@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		System.out.println("_)@)@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		System.out.println("_)@)@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		System.out.println("_)@)@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		
-		
+		if(logger.isDebugEnabled()){
+			logger.debug("_)@)@@@@@@@@@@@AdminDaoImpl@@@@@@@@@@@@@@@@");
+			logger.debug("_)@)@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		}
 	}
 	
 	@Autowired
