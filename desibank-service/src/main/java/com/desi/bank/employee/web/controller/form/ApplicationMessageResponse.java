@@ -1,5 +1,9 @@
 package com.desi.bank.employee.web.controller.form;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@JsonInclude(value=Include.NON_NULL)
 public class ApplicationMessageResponse {
 	private String status;
 	private String message;

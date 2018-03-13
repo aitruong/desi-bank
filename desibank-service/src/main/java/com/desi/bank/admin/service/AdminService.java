@@ -6,7 +6,7 @@ import com.desi.bank.customer.web.controller.form.CustomerForm;
 
 /**
  * 
- * @author VC1
+ * @author nagendra.yadav
  *
  */
 public interface AdminService {
