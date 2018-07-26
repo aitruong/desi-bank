@@ -74,6 +74,7 @@ public class UserAuthController {
 	 }*/
 	
 	
+	
 	@RequestMapping(value = "login.htm", method = RequestMethod.GET)
 	public String loginPage() {
 			return "login";

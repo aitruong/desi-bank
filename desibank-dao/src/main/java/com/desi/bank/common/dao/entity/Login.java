@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * dd
@@ -21,7 +22,18 @@ public class Login {
 	private String locked;
 	private int noOfAttempt;
 	private Timestamp llt;
+	private String email;
 	
+	
+	@Transient
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public Timestamp getLlt() {
 		return llt;
 	}

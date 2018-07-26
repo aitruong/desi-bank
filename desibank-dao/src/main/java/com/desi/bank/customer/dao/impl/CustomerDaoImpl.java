@@ -1,6 +1,8 @@
 package com.desi.bank.customer.dao.impl;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -117,8 +119,15 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
 	public Login validateCustomer(String userid, String password) {
 		//How many records will come in case of user is valid... 
 		List<Login> logins = (List<Login>) getHibernateTemplate().find("from Login l where l.loginid = ? and l.password = ?",new Object[] { userid, password });
+		List<Customer> customers = (List<Customer>) getHibernateTemplate().find("from Customer c where c.userid = ?", userid);
+		String email=""; 
+		if(customers!=null && customers.size()==1){
+			email=customers.get(0).getEmail();
+		}
 		if(logins!=null && logins.size()>0){
-				return logins.get(0);
+			Login login=logins.get(0);
+			login.setEmail(email);
+			return login;
 		}else{
 			return null;
 		}
@@ -283,16 +292,36 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
 		}
 
 	}
+	
+	@Override
+	public String updatePassword(String userid,String newpassword) {
+		List<Login> logins = (List<Login>) getHibernateTemplate().find("from Login l where l.loginid = ?", new Object[] { userid });
+		if(logins!=null && logins.size()==1){
+			Login login=logins.get(0);
+			//updating the password
+			login.setPassword(newpassword);
+			//update last login time
+			login.setLlt(new Timestamp(new Date().getTime()));
+		}
+		return "success";
+	}
 
 	@Override
 	public UserSessionVO validateCustomerByUserId(String userid) {
-		List<Login> customers = (List<Login>) getHibernateTemplate().find(
+		List<Login> logins = (List<Login>) getHibernateTemplate().find(
 				"from Login l where l.loginid = ?", new Object[] { userid });
+	
+		List<Customer> customers = (List<Customer>) getHibernateTemplate().find("from Customer c where c.userid = ?", userid);
+		String email=""; 
+		if(customers!=null && customers.size()==1){
+			email=customers.get(0).getEmail();
+		}
 		// UserSessionVO userSessionVO = new UserSessionVO();
 		UserSessionVO userSessionVO = BeanUtils
 				.instantiate(UserSessionVO.class);
-		if (customers.size() == 1) {
-			BeanUtils.copyProperties(customers.get(0), userSessionVO);
+		if (logins.size() == 1) {
+			BeanUtils.copyProperties(logins.get(0), userSessionVO);
+			userSessionVO.setEmail(email);
 		}
 		return userSessionVO;
 	}

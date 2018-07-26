@@ -32,6 +32,7 @@ import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 
 import com.desi.bank.common.dao.entity.PayeeInfo;
 import com.desi.bank.common.dao.entity.SecurityQuestions;
+import com.desi.bank.constant.DesiBankConstant;
 import com.desi.bank.constant.DesiBankNavigationConstant;
 import com.desi.bank.constant.SavingApplicationStatus;
 import com.desi.bank.customer.service.CustomerPayeeService;
@@ -316,6 +317,17 @@ public class CustomerController {
 			 List<CustomerForm> customerForms=customerService.findCustomers();
 			 model.addAttribute("customerForms",customerForms);
 			return "customers";
+	}
+	
+	@RequestMapping(value = "/customer/updatePassword.htm", method = RequestMethod.POST)
+	public String updatePassword(Model model, @RequestParam(value="newPassword") String newPassword,@RequestParam(value="confirmPassword") String confirmPassword,HttpSession session) {
+		UserSessionVO userSessionVO= (UserSessionVO) session.getAttribute(DesiBankConstant.USER_SESSION_DATA);
+		customerService.updatePassword(userSessionVO.getLoginid(), newPassword);
+		if(!newPassword.equals(confirmPassword)){
+			model.addAttribute("message", "Your new password and confirm password are not same!");
+			return DesiBankNavigationConstant.CUSTOMER_BASE+DesiBankNavigationConstant.CHANGE_PASSWORD_PAGE;
+		}
+		return DesiBankNavigationConstant.CUSTOMER_BASE+DesiBankNavigationConstant.CUSTOMER_HOME_PAGE;
 	}
 	
 	@RequestMapping(value = "editCustomer.htm", method = RequestMethod.GET)

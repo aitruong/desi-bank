@@ -49,6 +49,11 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 	
 	@Override
+	public String updatePassword(String userid,String newpassword) {
+		return customerDao.updatePassword(userid, newpassword);
+	}
+	
+	@Override
 	public UserSessionVO validateCustomerByUserId(String userid) {
 		return customerDao.validateCustomerByUserId(userid);
 	}

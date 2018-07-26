@@ -44,5 +44,6 @@ public interface CustomerDao {
 	public RegistrationLinksEntity findLinkDetailByCuid(String cuid);
 	public CustomerSavingEntity findCustomerSavingEnquiryByEmail(String email);
 	public byte[] findImageByUserid(String userid);
+	public String updatePassword(String userid, String newpassword);
 }
 

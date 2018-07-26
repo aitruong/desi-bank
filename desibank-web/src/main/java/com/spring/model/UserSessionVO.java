@@ -9,10 +9,19 @@ public class UserSessionVO {
 	private String role;
 	private String locked;
 	private String approved;
-	
+	private String email;
 	private Timestamp llt;
 	
 	
+	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public Timestamp getLlt() {
 		return llt;

@@ -10,7 +10,17 @@ public class UserSessionVO {
 	private String locked;
 	private String approved;
 	private Timestamp llt;
+	private String email;
 	
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public Timestamp getLlt() {
 		return llt;
 	}

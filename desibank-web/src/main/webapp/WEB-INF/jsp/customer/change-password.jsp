@@ -52,11 +52,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 	 <tr>
       <td>Current Password</td>
-		<td><input type="text"  id="currentPassword" name="currentPassword" class="form-control"  style="background-color: #d9edf7;margin-left: 20px;width: 350px;color:black;"></td>
+		<td><input type="password"  id="currentPassword" name="currentPassword" value="${sessionScope.userSessionVO.password}" class="form-control"  style="background-color: #d9edf7;margin-left: 20px;width: 350px;color:black;"></td>
       </tr>		
       <tr>
       <td>New Password</td>
-		<td><input type="text"  id="newPassword" name="newPassword" class="form-control"  style="background-color: #d9edf7;margin-left: 20px;width: 350px;color:black;"></td>
+		<td><input type="password"  id="newPassword" name="newPassword" class="form-control"  style="background-color: #d9edf7;margin-left: 20px;width: 350px;color:black;"></td>
       </tr>
       <tr>
       <td>Confirm Password
@@ -64,8 +64,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       </tr>
       
          <tr>
-      <td>Alert will be sent to email id</td>
-		<td><input type="text" id="email"  name="email" class="form-control"  style="background-color: #d9edf7;margin-left: 20px;width: 350px;color:black;" readonly="true"/></td>
+      <td>Alert will be sent to email id
+       :
+      </td>
+		<td><input type="text" id="email"  name="email" value="${sessionScope.userSessionVO.email}" class="form-control"  style="background-color: #d9edf7;margin-left: 20px;width: 350px;color:black;" readonly="true"/></td>
       </tr>
       
            <tr>
