@@ -388,7 +388,8 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
 	
 	@Override
 	public CustomerSavingEntity findCustomerSavingEnquiryByEmail(String email) {
-		List<CustomerSavingEntity> customerSavingList = (List<CustomerSavingEntity>)getHibernateTemplate().find("from CustomerSavingEntity cus where cus.email=?",new Object[] { email }) ;
+		List<CustomerSavingEntity> customerSavingList = (List<CustomerSavingEntity>)getHibernateTemplate().
+				find("from CustomerSavingEntity cus where cus.email=?",new Object[] { email }) ;
 		if(customerSavingList!=null  && customerSavingList.size()==0){
 			CustomerSavingEntity entity=new CustomerSavingEntity();
 			return entity;

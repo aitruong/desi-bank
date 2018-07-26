@@ -9,12 +9,13 @@
 			http://www.springframework.org/schema/context/spring-context-3.0.xsd
 			 http://www.springframework.org/schema/security 
                     http://www.springframework.org/schema/security/spring-security-3.2.xsd">
-    <!-- <security:global-method-security pre-post-annotations="enabled" proxy-target-class="true"/>  -->              
+       
+    <!-- <security:global-method-security pre-post-annotations="enabled" proxy-target-class="true"/>  --> 
 	<!-- This is where we configure Spring-Security  -->
  	<security:http auto-config="true" use-expressions="true" access-denied-page="/common/denied.htm" >
  		<security:intercept-url pattern="/auth/logout.htm" access="permitAll"/> 
- 		<security:intercept-url pattern="saving/accounts/registration.htm" access="permitAll"/>
-	 		<security:intercept-url pattern="/auth/slogout.htm" access="permitAll"/> 
+ 		<security:intercept-url pattern="saving/accounts/registration.htm" access="employee"/>
+	 	<security:intercept-url pattern="/auth/slogout.htm" access="permitAll"/> 
 	 	<security:intercept-url pattern="/auth.htm" access="permitAll"/>
 	 	<security:intercept-url pattern="/emailtemplate.jsp" access="permitAll"/>
 	 	<security:intercept-url pattern="/customer/registation.htm" access="permitAll"/>
@@ -46,7 +47,6 @@
 	<!-- Declare an authentication-manager to use a custom userDetailsService -->
 	<security:authentication-manager>
 	        <security:authentication-provider user-service-ref="UserSpringSecuirtyAuthProvider">
-	        	<!-- 	<security:password-encoder ref="bcryptEncoder"/> -->
 	        </security:authentication-provider>
 	</security:authentication-manager>
 	

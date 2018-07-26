@@ -14,5 +14,6 @@ public interface DesiBankConstant {
 	public static final  String SUCCESS="success";
 	
 	public static final String REGISTRATION_URL="saving/accounts/registration.htm?cuid=";
+	public static final String USER_SESSION_DATA="userSessionVO";
 
 }

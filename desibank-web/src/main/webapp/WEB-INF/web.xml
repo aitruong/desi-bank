@@ -62,11 +62,13 @@ Spring Root Web ApplicationContext file ->>
   <servlet-mapping>
     <servlet-name>desibak</servlet-name>
     <url-pattern>*.htm</url-pattern>
+    <!-- This is called extension mapping -->
   </servlet-mapping>
   
     <servlet-mapping>
     <servlet-name>desibak</servlet-name>
     <url-pattern>*.xls</url-pattern>
+    <!-- This is called extension mapping -->
   </servlet-mapping>
   
     <!--

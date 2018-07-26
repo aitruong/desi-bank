@@ -21,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -105,18 +106,18 @@ public class CustomerController {
 		
 		@RequestMapping(value = "/saving/accounts/registration.htm", method = RequestMethod.POST)
 		public String addCustomer(@ModelAttribute("customer") CustomerForm customer,ModelMap map) {
-			System.out.println(customer);
-			customer.setApproved("0");
-		     //customer.setLocked("yes");
-		     customer.setAccountNum("NA");
-		     StringBuilder sb= new StringBuilder();
+			    System.out.println(customer);
+			    customer.setApproved("0");
+		       //customer.setLocked("yes");
+		        customer.setAccountNum("NA");
+		        StringBuilder sb= new StringBuilder();
 		        sb.append("Welcome to Desi Bank");
 		        sb.append("\n\n User id is " + customer.getUserid());
 		        sb.append("\n\n Password is " + customer.getPassword());
-
 		        //Password is encrypted before persisting in database
-		     customer.setPassword(passwordEncoder.encode(customer.getPassword()));
-		     try{
+		       //this code we can move to service 
+		       customer.setPassword(passwordEncoder.encode(customer.getPassword()));
+		      try{
 		    	try { 
 		    		customerService.persistCustomer(customer);
 		    	}catch (DesiBankException  e) {
@@ -124,17 +125,18 @@ public class CustomerController {
 		    			logger.error(e.getMessage());
 		    			logger.error(e.getCause());
 		    		}
-		    		e.printStackTrace();
+		    		e.printStackTrace(); //very bad = this should be log into the log file 
 		    		return "adminError";
 				}
 		       /* StringBuilder sb= new StringBuilder();
 		        sb.append("Welcome to Desi Bank");
 		        sb.append("\n\n User id is " + customer.getUserid());
 		        sb.append("\n\n Password is " + customer.getPassword());*/
+		    	//this code should go inside service layer
 		        mailServiceImpl.sendMail("DesiBank", customer.getEmail(),"Registration Successfull", sb.toString());
 		     }
 		     catch (MailSendException e) {
-		    	 if(logger.isErrorEnabled()){
+		    	    if(logger.isErrorEnabled()){
 		    			logger.error(e);
 		    		}
 		    	 map.addAttribute("emailMessage", "Email could be sent since you are not connected with internet!");
@@ -179,8 +181,10 @@ public class CustomerController {
 		}*/
 		
 		//Model - it is used to carry the data from the conctroller to the view
+		//data:$("#savingAccountForm").serialize()
 		@RequestMapping(value = "/customer/savingAccountWithAjax.htm", method = RequestMethod.POST)
-		@ResponseBody	public String savingAccountEnquiry(@ModelAttribute  CustomerSavingForm customerSavingForm,Model model,HttpServletRequest request) {
+		@ResponseBody	public String savingAccountEnquiry(@ModelAttribute  CustomerSavingForm customerSavingForm,
+				Model model,HttpServletRequest request) {
 			if(logger.isDebugEnabled()) {
 				logger.debug(customerSavingForm);
 			}
@@ -189,15 +193,14 @@ public class CustomerController {
 			//customer_saving_enquiry_tbl 
 			//findEmailCustomerSavingRequest(String email);
 			//return "redirect:/index.jsp?message=your application has been submitted sucessfully....";
-			
 			CustomerSavingForm dCustomerSavingForm=customerService.findCustomerSavingEnquiryByEmail(customerSavingForm.getEmail());
 			if(dCustomerSavingForm!=null && dCustomerSavingForm.getEmail()!=null){
 				 return "exist";
 			}
-			
 			customerSavingForm.setDoa(new Date());
 			customerSavingForm.setStatus(SavingApplicationStatus.PENDING_STATUS);
 			customerService.savingAccountRequest(customerSavingForm);
+			
 			String imageUrl=DesiBankUtils.getServerBaseURL(request)+"/images/regards.png";
 			//make this sendEnquiryConfirmation asynchronous
 			customerEmailService.sendEnquiryConfirmation(customerSavingForm.getEmail(),customerSavingForm.getName(), imageUrl);

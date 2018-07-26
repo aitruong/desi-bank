@@ -55,6 +55,7 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Override
 	public String persistCustomer(CustomerForm customer) {
+		
 		return customerDao.persistCustomer(customer);
 	}
 

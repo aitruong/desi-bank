@@ -19,7 +19,7 @@
 			</div>
 			<h4>
 			<a href="${pageContext.request.contextPath}/employee/pendingSavingRequest.htm">
-					Customer Saving Accout Request(${pendingRequestCount})
+					Customer Saving Account Request(${pendingRequestCount})
 			</a>
 			
 			</h4>

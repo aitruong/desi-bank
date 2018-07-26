@@ -1,14 +1,24 @@
 package com.desi.bank.employee.web.controller.form;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
-@JsonInclude(value=Include.NON_NULL)
+/**
+ * 
+ * @author VC1
+ *
+ */
 public class ApplicationMessageResponse {
 	private String status;
 	private String message;
 	private String exception;
 	private String url;
+	private int age;
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
 
 	public String getStatus() {
 		return status;

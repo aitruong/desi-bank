@@ -117,12 +117,10 @@ public class AdminDaoImpl extends HibernateDaoSupport implements AdminDao {
 			 customerAccountInfo.setPayeeName(pcust.getName());
 			 customerAccountInfo.setStatusAsOf(new Date());
 			 customerAccountInfo.setTavBalance(1000);
-			 
 			  pcust.setAccountNum(DesiBankConstant.PREFIX_ACCOUNT_NUMBER+currentAccountNumDB+"")	;	   
 			   pcust.setApproved("1");
 			  getHibernateTemplate().update(pcust);
 			  getHibernateTemplate().save(customerAccountInfo); 			 
-			  
 		   }
 		 
 		   //Finally updating current account number into table;

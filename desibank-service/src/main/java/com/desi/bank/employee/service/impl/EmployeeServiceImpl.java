@@ -10,13 +10,17 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.desi.bank.common.dao.entity.Customer;
+import com.desi.bank.common.dao.entity.CustomerAccountInfo;
 import com.desi.bank.common.dao.entity.CustomerSavingEntity;
+import com.desi.bank.customer.web.controller.form.CustomerAccountInfoVO;
 import com.desi.bank.customer.web.controller.form.CustomerForm;
 import com.desi.bank.customer.web.controller.form.CustomerSavingForm;
+import com.desi.bank.email.service.ICustomerEmailService;
 import com.desi.bank.employee.dao.EmployeeDao;
 import com.desi.bank.employee.dao.entity.RegistrationLinksEntity;
 import com.desi.bank.employee.dao.entity.RejectSavingRequestEntity;
 import com.desi.bank.employee.service.EmployeeService;
+import com.desi.bank.employee.web.controller.form.CustomerAccountRegistrationVO;
 import com.desi.bank.employee.web.controller.form.RegistrationLinksForm;
 import com.desi.bank.employee.web.controller.form.RejectSavingRequestForm;
 
@@ -27,6 +31,31 @@ public class EmployeeServiceImpl  implements EmployeeService{
 	@Autowired
 	@Qualifier("EmployeeDaoImpl")
 	private EmployeeDao employeeDao;
+	
+	
+	@Autowired
+	@Qualifier("CustomerEmailService")
+	private ICustomerEmailService customerEmailService;
+	
+	@Override
+	public String sendAccountSummaryEmail(CustomerAccountRegistrationVO customerAccountRegistrationVO){
+		return customerEmailService.sendAccountCreationEmail(customerAccountRegistrationVO);
+	}
+	
+	
+	/**
+	 *  This is should be in the transaction......................
+	 */
+	
+	@Override
+	public CustomerAccountInfoVO  createCustomerAccount(String userid) {
+		CustomerAccountInfoVO customerAccountInfoVO=new CustomerAccountInfoVO();
+		CustomerAccountInfo customerAccountInfo	=employeeDao.createCustomerAccount(userid);
+		BeanUtils.copyProperties(customerAccountInfo, customerAccountInfoVO);
+		//customerAccountInfoVO.setAvBalance(customerAccountInfo.getAvBalance());
+		//customerAccountInfoVO.setTavBalance(customerAccountInfo.getTavBalance());
+		return  customerAccountInfoVO;
+	}
 	
 	@Override
 	public String  rejectSavingAccountRequests(RejectSavingRequestForm rejectSavingRequestForm) {

@@ -1,9 +1,3 @@
-<!--
-	Author: W3layouts
-	Author URL: http://w3layouts.com
-	License: Creative Commons Attribution 3.0 Unported
-	License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
 <html lang="en">
 <!-- Head -->
@@ -84,7 +78,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<ul class="nav navbar-nav navbar-right">
 							<li><a href="#index.html" class="scroll">home</a></li>
 							<li><a href="#services" class="scroll">services</a></li>
-							<li><a href="#skills" class="scroll">skills</a></li>
+							<li><a href="">Status</a></li>
 							<li><a href="#team" class="scroll">team</a></li>
 							<li><a href="#payment" class="scroll">payment</a></li>
 							<li><a href="#blog" class="scroll">blog</a></li>
@@ -538,26 +532,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 			$("#savingAccount").click(function(){
 				  console.log("_@@)@)@)@)@(@(@&&&&&&&&&&&&&&&&&&&))");
+				  //http://localhost:8080/desibank-web/	
 				  var contextPath="${pageContext.request.contextPath}";
-				   
 				  //FormData
 				  //submiting whole Form data through ajax
 				  //$("#savingAccountForm").serialize()
 				   //name="Nagendra"& email="nagen@synergisticit.com"
-					$.ajax({url:contextPath+"/customer/savingAccountWithAjax.htm", type: 'POST',data:$("#savingAccountForm").serialize(),success:function(jsonData) {  //data= this.responseText
+				    //Here we are sending our data as html form data
+					$.ajax({url:contextPath+"/customer/savingAccountWithAjax.htm", type: 'POST',data:$("#savingAccountForm").serialize(),success:function(data) {  //data= this.responseText
 						//data is JavaScript object against JSON response coming fromm the server
-							console.log(jsonData);
-							if(jsonData=='success') {
+							console.log(data); // success = is values coming from the server
+							if(data=='success') {
 								$("#ApplicationMessage").html("Hello! your saving account form request has been submitted successfully.... ");
-								$("#savingAccountForm")[0].reset()
-							}else if(jsonData=='exist') {
+								$("#savingAccountForm")[0].reset(); // this is called resetting using jQuery 
+							}else if(data=='exist') {
 								$("#ApplicationMessage").html("This email already exist for other the customer saving account enquiry.... ");
 								$("eemail").focus();
 							}else{
 								$("#ApplicationMessage").html("Error occures during the form processing.... ");
 							}
-					}
-					});	 //end of the ajax			
+					} //end of function
+				});	 //end of the ajax			
 			});
 			
 			

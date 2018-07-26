@@ -22,6 +22,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import com.desi.bank.employee.web.controller.form.CustomerAccountRegistrationVO;
+
 @Service("CustomerEmailService")
 @Scope("singleton")
 public class CustomerEmailService  implements ICustomerEmailService{
@@ -34,6 +36,56 @@ public class CustomerEmailService  implements ICustomerEmailService{
 	@Qualifier("velocityEngine")
 	 private VelocityEngine velocityEngine;
 	
+	 @Async
+	@Override
+	public String sendAccountCreationEmail(CustomerAccountRegistrationVO customerAccountRegistrationVO) {
+		 //Here write code for sending email using the template
+		  MimeMessage message = mailSender.createMimeMessage();
+		  try {
+			    InternetAddress fromAddress = new InternetAddress("synergisticit2020@gmail.com", "DesiBank PVT. LTD.");
+				message.setFrom(fromAddress);
+				// message.setSender(new InternetAddress(from));
+				message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(customerAccountRegistrationVO.getTo()));
+				message.setSubject(customerAccountRegistrationVO.getSubject());
+				message.setSentDate(new Date());
+				//compose the content of the email
+				
+				// This mail has 2 part, the BODY and the embedded image
+				//multipart is a body of the email
+				MimeMultipart multipart = new MimeMultipart("related");
+				
+				// first part (the html)
+				//creating first of of the body of the email
+				BodyPart messageBodyPart = new MimeBodyPart();
+				//loading vm template
+				Template template = velocityEngine.getTemplate("./templates/customer-account-creation-summary.vm");
+				
+				//below is used to send data from java to vm template
+				VelocityContext velocityContext = new VelocityContext();
+				velocityContext.put("account", customerAccountRegistrationVO);
+				//now merge velocityeContext & VM
+				StringWriter stringWriter = new StringWriter();
+				template.merge(velocityContext, stringWriter);
+				System.out.println(" :-"+stringWriter.toString());
+		        messageBodyPart.setContent(stringWriter.toString(), "text/html");
+		        multipart.addBodyPart(messageBodyPart);
+		        
+		        //Now creating another BodyPart for img
+		        messageBodyPart = new MimeBodyPart();
+		         messageBodyPart.setDataHandler(new DataHandler(new URL(customerAccountRegistrationVO.getImage())));
+		         messageBodyPart.setHeader("Content-ID", "<thanks>");
+		         multipart.addBodyPart(messageBodyPart);
+		         
+				// put everything together
+				message.setContent(multipart);
+				mailSender.send(message);
+			
+		  } catch (Exception e) {
+			  e.printStackTrace();
+		  }
+		 return "success";
+    }
+	
 	@Override
 	@Async
 	public String sendEnquiryConfirmation(String email,String name,String imageUrl) {
@@ -41,7 +93,7 @@ public class CustomerEmailService  implements ICustomerEmailService{
 	//Here write code for sending email using the template
 	MimeMessage message = mailSender.createMimeMessage();
 	try {
-		InternetAddress fromAddress = new InternetAddress(	"nagen@synergistic", "Aaron");
+		InternetAddress fromAddress = new InternetAddress("synergisticit2020@gmail.com", "DesiBank PVT. LTD.");
 		message.setFrom(fromAddress);
 		// message.setSender(new InternetAddress(from));
 		message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(email));
@@ -61,11 +113,15 @@ public class CustomerEmailService  implements ICustomerEmailService{
 		template.merge(velocityContext, stringWriter);
 		System.out.println(" :-"+stringWriter.toString());
          messageBodyPart.setContent(stringWriter.toString(), "text/html");
-		multipart.addBodyPart(messageBodyPart);
+         
+		 multipart.addBodyPart(messageBodyPart);
+		 
+		 
 		 messageBodyPart = new MimeBodyPart();
          messageBodyPart.setDataHandler(new DataHandler(new URL(imageUrl)));
          messageBodyPart.setHeader("Content-ID", "<bankimage>");
          multipart.addBodyPart(messageBodyPart);
+         
 		// put everything together
 		message.setContent(multipart);
 		mailSender.send(message);

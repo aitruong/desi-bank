@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * 
@@ -30,8 +31,7 @@ public class CustomerAccountInfo {
 	private Date StatusAsOf;
 	private String payeeName;
 	private String accountType;
-	
-	
+
 	@Column(length=20)
 	public String getAccountType() {
 		return accountType;

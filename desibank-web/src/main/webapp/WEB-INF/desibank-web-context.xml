@@ -43,7 +43,7 @@
         <property name="location" value="/WEB-INF/views.xml"/>
     </bean> -->
     
-    	<bean class="org.springframework.web.servlet.view.XmlViewResolver"
+    <bean class="org.springframework.web.servlet.view.XmlViewResolver"
 			p:location="/WEB-INF/jasper-report-view.xml"  p:order="1" />
 	<!--
 	<result name="success">/success.jsp</result>

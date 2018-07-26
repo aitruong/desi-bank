@@ -6,8 +6,6 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
@@ -21,11 +19,6 @@ import com.desi.bank.common.service.impl.SpringSecurityService;
 @Service("LoginFailureUserAuthHandler")
 @Scope("singleton")
 public class LoginFailureUserAuthHandler extends SimpleUrlAuthenticationFailureHandler {
-	
-	/**
-	 * Initiate Logger for this class
-	 */
-	private static final Log logger = LogFactory.getLog(LoginFailureUserAuthHandler.class);
 	
 	@Autowired
 	@Qualifier("SpringSecurityServiceImpl")
@@ -41,11 +34,9 @@ public class LoginFailureUserAuthHandler extends SimpleUrlAuthenticationFailureH
             throws IOException{
     		String username=request.getParameter("j_username");
     		int noOfAttempt=springSecurityService.findAttemptsCountForUser(username);
-    		if(logger.isDebugEnabled()){
-    			logger.debug("executing method  onAuthenticationFailure");
-    			logger.debug("j_username = "+username);
-    			logger.debug("noOfAttempt = "+noOfAttempt);
-    		}
+    			System.out.println("executing method  onAuthenticationFailure");
+    			System.out.println("j_username = "+username);
+    			System.out.println("noOfAttempt = "+noOfAttempt);
     		
     		//Hey I want to generate JSON response......................
     		response.setContentType("application/json");
@@ -67,9 +58,7 @@ public class LoginFailureUserAuthHandler extends SimpleUrlAuthenticationFailureH
     					}
     	 	 	   	// super.getRedirectStrategy().sendRedirect(request, response, "/index.jsp?message=Sorry your password is  not correct & remainingAttempt="+remainingAttempt);
     		}
-    		if(logger.isDebugEnabled()){
-    			logger.debug("jsonResponse  = "+jsonResponse);
-    		}
+    			System.out.println("jsonResponse  = "+jsonResponse);
  		   PrintWriter printWriter=response.getWriter();
 		   printWriter.write(jsonResponse);
 		   printWriter.flush();

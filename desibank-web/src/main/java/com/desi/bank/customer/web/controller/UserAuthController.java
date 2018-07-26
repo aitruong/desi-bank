@@ -35,6 +35,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.desi.bank.app.message.DesiBankAppMessages;
 import com.desi.bank.common.dao.entity.CustomerQuestionAnswer;
 import com.desi.bank.constant.DesiBankApplicationRole;
+import com.desi.bank.constant.DesiBankConstant;
 import com.desi.bank.constant.DesiBankNavigationConstant;
 import com.desi.bank.customer.service.CustomerService;
 import com.desi.bank.customer.web.controller.form.CustomerForm;
@@ -79,8 +80,14 @@ public class UserAuthController {
 	}
 	
 	@RequestMapping(value = "customerHome.htm", method = RequestMethod.GET)
-	public String customerHome() {
-			  return DesiBankNavigationConstant.CUSTOMER_BASE+DesiBankNavigationConstant.CUSTOMER_HOME_PAGE;
+	public String customerHome(HttpSession session) {
+		UserSessionVO sessionVO=(UserSessionVO)session.getAttribute(DesiBankConstant.USER_SESSION_DATA);
+		if(sessionVO.getLlt()==null){
+			 //write   the code to force to customer to change the password
+			return DesiBankNavigationConstant.CUSTOMER_BASE+DesiBankNavigationConstant.CHANGE_PASSWORD_PAGE;
+		}else{
+		  return DesiBankNavigationConstant.CUSTOMER_BASE+DesiBankNavigationConstant.CUSTOMER_HOME_PAGE;
+		}  
 	}
 	
 	@RequestMapping(value = "employeeHome.htm", method = RequestMethod.GET)
@@ -164,12 +171,17 @@ public class UserAuthController {
 					}
 	
 				   if ( userSessionVO.getLocked().equalsIgnoreCase("no") && userSessionVO.getRole() != null ){
-					   session.setAttribute("userSessionVO", userSessionVO);
+					    session.setAttribute(DesiBankConstant.USER_SESSION_DATA, userSessionVO);
 					   if (userSessionVO.getRole().equalsIgnoreCase(DesiBankApplicationRole.CUSTOMER.getValue())){
 						 //return customer detail from customer_tbl
 						   CustomerForm customerdetail= (CustomerForm) customerService.getUserDetail(userSessionVO.getLoginid());
 						   model.addAttribute("detail",customerdetail);
-						   return DesiBankNavigationConstant.CUSTOMER_BASE+DesiBankNavigationConstant.CUSTOMER_HOME_PAGE;
+							if(userSessionVO.getLlt()==null){
+								 //write   the code to force to customer to change the password
+								return DesiBankNavigationConstant.CUSTOMER_BASE+DesiBankNavigationConstant.CHANGE_PASSWORD_PAGE;
+							}else{
+								return DesiBankNavigationConstant.CUSTOMER_BASE+DesiBankNavigationConstant.CUSTOMER_HOME_PAGE;
+							}
 					   }else if(userSessionVO.getRole().equalsIgnoreCase(DesiBankApplicationRole.ADMIN.getValue()))	{
 					       //return "admin";
 					       return DesiBankNavigationConstant.ADMIN_BASE+DesiBankNavigationConstant.ADMIN_HOME_PAGE;
@@ -177,6 +189,8 @@ public class UserAuthController {
 					   else if(userSessionVO.getRole().equalsIgnoreCase(DesiBankApplicationRole.EMPLOYEE.getValue()))	{
 						   //Code to fetch number of request
 						   int pendingRequestCount=employeeService.findPendingSavingAccountRequestsCount();
+						   //Using model we can transfer our data from controller to view
+						   //it 
 						   model.addAttribute("pendingRequestCount", pendingRequestCount);
 					       return DesiBankNavigationConstant.EMPLOYEE_BASE+DesiBankNavigationConstant.EMPLOYEE_HOME_PAGE;
 				       } else	{

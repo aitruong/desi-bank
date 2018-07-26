@@ -1,4 +1,4 @@
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "benz" %>
 <!DOCTYPE html>
 <html lang="en">
 <!-- Head -->
@@ -124,9 +124,9 @@ function openApprovalPopup(name,email,csaid){
 	  <div style="float: right;">
 	  
 	  <select  name="filterOption" id="filterOption" class="form-control" style="width: 300px;  color: black;background-color: #ffffde;">
-	  			<c:forEach items="${filterOptions}" var="item">
+	  			<benz:forEach items="${filterOptions}" var="item">
             			 <option>${item}</option>
-             </c:forEach>
+             </benz:forEach>
      </select>
      	<br/>
      </div>
@@ -143,7 +143,8 @@ function openApprovalPopup(name,email,csaid){
             </tr>
         </thead>
         <tbody>
-        	<c:forEach items="${customerSavingFormList}" var="item"  varStatus="p">
+       
+       <benz:forEach items="${customerSavingFormList}" var="item"  varStatus="p">
             <tr id="${item.csaid}">
                 <td>${p.count}</td>
                 <td>${item.name }</td>
@@ -157,11 +158,11 @@ function openApprovalPopup(name,email,csaid){
                       </a>
                     &nbsp;&nbsp;&nbsp;
                        <a href="javascript:openApprovalPopup('${item.name }','${item.email }',${item.csaid});">
-                    <img src="${pageContext.request.contextPath}/images/icon/approve.png">
-                    </a>
+                  			  <img src="${pageContext.request.contextPath}/images/icon/approve.png">
+                   	 </a>
                     </td>
             </tr>
-            </c:forEach>
+            </benz:forEach>
               <tr>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>

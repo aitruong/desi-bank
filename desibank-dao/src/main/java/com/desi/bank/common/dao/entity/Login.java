@@ -1,5 +1,7 @@
 package com.desi.bank.common.dao.entity;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -18,6 +20,15 @@ public class Login {
 	private String role;
 	private String locked;
 	private int noOfAttempt;
+	private Timestamp llt;
+	
+	public Timestamp getLlt() {
+		return llt;
+	}
+
+	public void setLlt(Timestamp llt) {
+		this.llt = llt;
+	}
 
 	public int getNoOfAttempt() {
 		return noOfAttempt;

@@ -46,7 +46,6 @@
 			</list>
 		</property>
 
-<!-- 		<property name="packagesToScan" value="com.synergy.bank.customer.dao.entity" /> -->
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>

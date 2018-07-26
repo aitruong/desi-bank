@@ -1,5 +1,7 @@
 package com.spring.model;
 
+import java.sql.Timestamp;
+
 public class UserSessionVO {
 	private String loginid;
 	private String name;
@@ -7,6 +9,15 @@ public class UserSessionVO {
 	private String role;
 	private String locked;
 	private String approved;
+	private Timestamp llt;
+	
+	public Timestamp getLlt() {
+		return llt;
+	}
+
+	public void setLlt(Timestamp llt) {
+		this.llt = llt;
+	}
 
 	public String getApproved() {
 		return approved;

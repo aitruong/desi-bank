@@ -25,12 +25,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- scrolling script -->
 <script type="text/javascript">
 
-
-
-function openApprovalPopup(name,email,csaid){
+function openAccountGenerationPopup(name,email,csaid){
 		$("#acustomerName").val(name);
 		$("#aemail").val(email);
-		$("#apcsaid").val(csaid);
+		$("#userid").val(csaid);
 		$("#approveReuqestModel").modal("show");
 }
 
@@ -69,25 +67,29 @@ function openApprovalPopup(name,email,csaid){
 		
 		
 		$("#approveApplication").click(function(){
-			var reason=$("#areason").val();
-			if(reason.trim().length==0){
-				$("#reasonErrorMessage").html("Reason cannot be empty.............");
-				$("#areason").focus();
-				return;
-			}else{
 				var contextPath="${pageContext.request.contextPath}";
-				$.ajax({url:contextPath+"/employee/approveSavingRequest.htm", type: 'POST',data:$("#approveSavingRequestForm").serialize(),success:function(jsonData) {  //data= this.responseText
+				 //Creating JavaScript object using html form data 
+				 var jdata=$("#approveSavingRequestForm").serializeArray();
+				 //to convert form data into JavaScript
+			   	 var jsonData = {};
+				 jdata.forEach((item) => {
+						jsonData[item.name]=item.value;
+			   	 }); 
+				 
+				//converting JavaScript Object into- the  JSON.stringify(jsonData) 
+				$.ajax({url:contextPath+"/v1/employee/create-customer-account", contentType: "application/json", type: 'POST',data:JSON.stringify(jsonData),success:function(jsonData) {  //data= this.responseText
 					//data is JavaScript object against JSON response coming fromm the server
 						console.log(jsonData);
-						if(jsonData=='success') {
-							//apcsaid 
-							var  pcsaid =$("#apcsaid").val();
+						if(jsonData.status=='success') {
+							//userid 
+							var  pcsaid =$("#userid").val();
 							$("#"+pcsaid).hide();
 							$("#approveReuqestModel").modal("hide");
+							$("#AppMessage").html(jsonData.message);
+							
 						}
 				}
 				});	 //end of the ajax			
-			}
 	}); //end of click
 		
 		
@@ -122,6 +124,7 @@ function openApprovalPopup(name,email,csaid){
 	  <div style="float: right;">
      	<br/>
      </div>
+ <span id="AppMessage"></span>    
  <table class="table table-bordered">
         <thead>
             <tr>
@@ -130,7 +133,7 @@ function openApprovalPopup(name,email,csaid){
                 <th>Email</th>
                 <th>Mobile</th>
                  <th>Location</th>
-                   <th>Job Titile</th>
+                   <th>Job Title</th>
                 <th>Photo</th>
                 <th>Action</th>
             </tr>
@@ -150,7 +153,7 @@ function openApprovalPopup(name,email,csaid){
                     <img src="${pageContext.request.contextPath}/images/icon/reject.png">
                       </a>
                     &nbsp;&nbsp;&nbsp;
-                       <a href="javascript:openApprovalPopup('${item.name }','${item.email }',${item.userid});">
+                       <a href="javascript:openAccountGenerationPopup('${item.name }','${item.email }',${item.userid});">
                     <img src="${pageContext.request.contextPath}/images/icon/approve.png">
                     </a>
                     </td>
@@ -397,7 +400,7 @@ function openApprovalPopup(name,email,csaid){
 								</tr>
 								<tr>
 									<td>Username</td>
-									<td><input type="text"  id="customerName" name="customerName" class="form-control"  style="background-color: #d9edf7;margin-left: 20px;width: 350px;color:black;" readonly="readonly"></td>
+									<td><input type="text"  id="customerName" name="name" class="form-control"  style="background-color: #d9edf7;margin-left: 20px;width: 350px;color:black;" readonly="readonly"></td>
 								</tr>
 								
 									<tr>
@@ -477,8 +480,8 @@ function openApprovalPopup(name,email,csaid){
 				<div>
 					<div class="col-md-5">
 						<form id="approveSavingRequestForm">
-								<input type="hidden"  value=""  name="csaid"   id="apcsaid"/>
-							 <img src="{pageContext.request.contextPath}/images/login.png" style="display: inline;"/><h5 class="modal-title" style="display: inline;font-size: 16px;">Approve Request</h5>
+							<input type="hidden"  value=""  name="userid"   id="userid"/>
+							 <img src="${pageContext.request.contextPath}/images/login.png" style="display: inline;"/><h5 class="modal-title" style="display: inline;font-size: 16px;">Create Account for Customer</h5>
 							 <br/>
 							 <br/>
 							<span id="errorMessage" style="color: red;font-size: 15px;"></span> 
@@ -490,7 +493,7 @@ function openApprovalPopup(name,email,csaid){
 								</tr>
 								<tr>
 									<td>Username</td>
-									<td><input type="text"  id="acustomerName" name="customerName" class="form-control"  style="background-color: #d9edf7;margin-left: 20px;width: 350px;color:black;" readonly="readonly"></td>
+									<td><input type="text"  id="acustomerName" name="name" class="form-control"  style="background-color: #d9edf7;margin-left: 20px;width: 350px;color:black;" readonly="readonly"></td>
 								</tr>
 								
 									<tr>
@@ -508,12 +511,6 @@ function openApprovalPopup(name,email,csaid){
 									<td colspan="2" id="areasonErrorMessage" color: red;font-size: 15px;>&nbsp;</td>
 								</tr>
 								
-								<tr>
-									<td>Reason</td>
-									<td>
-										<textarea rows="3" cols="40" name="reason" id="areason" style=" border:1px solid;color:black;border-color: #d9edf7; "></textarea>
-									</td>
-								</tr>
 									<tr>
 									<td colspan="2">&nbsp;</td>
 								</tr>

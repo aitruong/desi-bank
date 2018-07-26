@@ -23,8 +23,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	href="${pageContext.request.contextPath}/css/font-awesome.css" />
 <!-- //.css files -->
 <!-- Default-JavaScript-File -->
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <!-- //Default-JavaScript-File -->
@@ -39,6 +43,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- scrolling script -->
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
+		
+		 $("#datepicker").change(function(){
+			 console.log($(this).val());
+			 var sdate=$(this).val();
+			 if(sdate.length<10){
+				 return;
+			 }
+			 var context="${pageContext.request.contextPath}";
+			 //methd =GET , Accept = "application/json"
+			 $.getJSON(context+"/v1/customer/find/age?pdate="+sdate,function(data){
+				 	//{"age" : 10}
+				 	console.log(data);
+					$("#age").val(data.message);					 
+			 });
+		 });
+		
+		 $("#datepicker").datepicker({
+			  dateFormat: "yy-mm-dd"
+		 });
+		
 		$(".scroll").click(function(event) {
 			event.preventDefault();
 			$('html,body').animate({
@@ -92,8 +116,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								style="background-color: #d9edf7; margin-left: 20px; width: 250px; color: black;"></td>
 						
 							<td>Date of Birth</td>
-							<td><input type="date" value="" id="dob" name="dob"
-								class="form-control"
+							<td><input type="text" class="form-control" id="datepicker" name="dob" 
 								style="background-color: #d9edf7; margin-left: 20px; width: 250px; color: black;"></td>
 						</tr>
 

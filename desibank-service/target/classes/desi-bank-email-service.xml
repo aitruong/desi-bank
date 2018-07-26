@@ -11,9 +11,7 @@
 			http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 			http://www.springframework.org/schema/context
 			http://www.springframework.org/schema/context/spring-context-3.0.xsd">
-		
       <context:component-scan base-package="com.desi.bank.email.service"/>
-      
       <!-- 
       			<dependency>
 			<groupId>org.springframework</groupId>
@@ -24,8 +22,8 @@
      <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
         <property name="host" value="smtp.gmail.com"/>
         <property name="port" value="587"/>
-        <property name="username" value="desibankproject@gmail.com"/>
-        <property name="password" value="desibank@123"/>
+        <property name="username" value="synergisticit2020@gmail.com"/>
+        <property name="password" value="synergisticit2020@123"/>
         <property name="javaMailProperties">
             <props>
                 <!-- Use SMTP transport protocol -->

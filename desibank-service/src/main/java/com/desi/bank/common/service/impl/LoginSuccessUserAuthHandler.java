@@ -7,8 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -18,11 +16,6 @@ import org.springframework.stereotype.Service;
 @Service("LoginSuccessUserAuthHandler")
 @Scope("singleton")
 public class LoginSuccessUserAuthHandler  extends SimpleUrlAuthenticationSuccessHandler  {
-	
-	/**
-	 * Initiate Logger for this class
-	 */
-	private static final Log logger = LogFactory.getLog(LoginSuccessUserAuthHandler.class);
 	
 	/**
 	 * When you are coming to this handler  method

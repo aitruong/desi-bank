@@ -46,7 +46,6 @@ public class AdminController {
 	
 	@RequestMapping(value="/admin/approvedCustomers.htm", method=RequestMethod.POST)
 	public String approveCustomers(HttpServletRequest request,Model model){
-		
 		String[] approveCustomerIds=request.getParameterValues("approveCustomer");
 		//database query
 		adminService.approveCustomers(approveCustomerIds);

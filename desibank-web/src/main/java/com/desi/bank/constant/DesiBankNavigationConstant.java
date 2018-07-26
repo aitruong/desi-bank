@@ -8,6 +8,8 @@ package com.desi.bank.constant;
  */
 public interface DesiBankNavigationConstant {
 	
+	
+	
 	public static final String EMPLOYEE_BASE="employee/";
 	public static final String CUSTOMER_BASE="customer/";
 	public static final String ADMIN_BASE="admin/";
@@ -23,6 +25,7 @@ public interface DesiBankNavigationConstant {
 	public static final String ADMIN_HOME_PAGE="adminHome";
 	//Mapping for customer
 	public static final String CUSTOMER_HOME_PAGE="customerHome";
+	public static final String CHANGE_PASSWORD_PAGE="change-password";
 	public static final String CUSTOMER_ACCOUNT_SUMMARY_PAGE="account-summary";
 	public static final String CUSTOMER_REGISTRATION_PAGE="customer-registration";
 	public static final String CUSTOMER_PAYEE_LIST_PAGE="customer-payee-list";

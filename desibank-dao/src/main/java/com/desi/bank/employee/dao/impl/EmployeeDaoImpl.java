@@ -14,10 +14,13 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.desi.bank.common.dao.AppDaoConstant;
+import com.desi.bank.common.dao.entity.AccountNumberGenerator;
 import com.desi.bank.common.dao.entity.Customer;
+import com.desi.bank.common.dao.entity.CustomerAccountInfo;
 import com.desi.bank.common.dao.entity.CustomerSavingEntity;
 import com.desi.bank.common.dao.entity.Login;
 import com.desi.bank.constant.DesiBankApplicationRole;
+import com.desi.bank.constant.DesiBankConstant;
 import com.desi.bank.employee.dao.EmployeeDao;
 import com.desi.bank.employee.dao.entity.RegistrationLinksEntity;
 import com.desi.bank.employee.dao.entity.RejectSavingRequestEntity;
@@ -30,6 +33,48 @@ public class EmployeeDaoImpl extends HibernateDaoSupport implements EmployeeDao 
 	@Qualifier("sessionFactory")
 	public void setSpringManageSessionFactory(SessionFactory sessionFactory) {
 		super.setSessionFactory(sessionFactory);
+		
+	}
+	
+	/**
+	 *  This is should be in the transaction......................
+	 */
+	@Transactional(propagation=Propagation.REQUIRED)
+	@Override
+	public CustomerAccountInfo  createCustomerAccount(String userid) {
+		//Step - Loading the customer detail
+		//userid is not a primary key ..it is a candidate key!
+		
+		//loading the customer details
+		List<Customer> cutomers=(List<Customer>)super.getHibernateTemplate().find("from  Customer where userid=?",userid);
+		
+		Customer customer;
+		if(cutomers!=null && cutomers.size()==1){
+			customer=cutomers.get(0);
+			customer.setApproved("yes");
+		}else{
+			RuntimeException exception=new RuntimeException("duplicate userid is found for selected customer  "+userid);
+			throw exception;
+		}
+		//write logic to generate account number
+		AccountNumberGenerator accountNumberGenerator=super.getHibernateTemplate().get(AccountNumberGenerator.class, 1L);
+		long newAccountNumber =accountNumberGenerator.getAccountNumber()+1;
+		//change the state of 
+		accountNumberGenerator.setAccountNumber(newAccountNumber);
+		//Creating customer account details
+		CustomerAccountInfo customerAccountInfo=new CustomerAccountInfo();
+		customerAccountInfo.setAccountNumber(DesiBankConstant.PREFIX_ACCOUNT_NUMBER+""+newAccountNumber);
+		customerAccountInfo.setAccountType("Saving");
+		customerAccountInfo.setAvBalance(10000.00F);
+		customerAccountInfo.setBranch("Fremont");
+		customerAccountInfo.setCurrency("$");
+		customerAccountInfo.setCustomerId(userid);
+		customerAccountInfo.setStatusAsOf(new Date());
+		customerAccountInfo.setTavBalance(10000.00F);
+		super.getHibernateTemplate().save(customerAccountInfo);
+		super.getHibernateTemplate().update(accountNumberGenerator);
+		super.getHibernateTemplate().update(customer);
+		return customerAccountInfo;
 	}
 	
 	
@@ -106,6 +151,7 @@ public class EmployeeDaoImpl extends HibernateDaoSupport implements EmployeeDao 
 		}
 		return resultStatus;
 	}
+	//EmployeeDaoImpl.java
 	@Override
 	public List<CustomerSavingEntity>  findPendingSavingAccountRequests() {
 		List<CustomerSavingEntity>  customerSavingEntityList=(List<CustomerSavingEntity>)super.getHibernateTemplate().find("from  CustomerSavingEntity where status='"+AppDaoConstant.PENDING_STATUS+"'") ;
@@ -114,7 +160,7 @@ public class EmployeeDaoImpl extends HibernateDaoSupport implements EmployeeDao 
 	
 	@Override
 	public List<Customer>  findPendingSavingAccountApprovalRequests() {
-		List<Customer>  customerSavingEntityApprovalList=(List<Customer>)super.getHibernateTemplate().find("from  Customer where approved='"+AppDaoConstant.NO_STATUS+"'") ;
+		List<Customer>  customerSavingEntityApprovalList=(List<Customer>)super.getHibernateTemplate().find("from  Customer where approved='"+AppDaoConstant.NO_STATUS+"' OR approved='0'") ;
 		return customerSavingEntityApprovalList;
 	}
 	
@@ -142,7 +188,7 @@ public class EmployeeDaoImpl extends HibernateDaoSupport implements EmployeeDao 
 	}
 	
 	@Override
-	public int  findPendingSavingAccountRequestsCount() {
+	public int  findPendingSavingAccountRequestsCount() { //HQL
 		List  customerSavingEntityList=super.getHibernateTemplate().find("select count(*) from  CustomerSavingEntity where status='"+AppDaoConstant.PENDING_STATUS+"'") ;
 		long count=0;
 		if(customerSavingEntityList!=null && customerSavingEntityList.size()==1) {

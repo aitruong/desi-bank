@@ -10,7 +10,7 @@ public interface DesiBankConstant {
 	public long DEFAULT_ACCOUNT_NUMBER=12233444;
 	public long DEFAULT_TX_ID=100;
 	
-	public String PREFIX_ACCOUNT_NUMBER="0031";
+	public String PREFIX_ACCOUNT_NUMBER="003151";
 	
 	public String CURRENCY="Rs";
 	

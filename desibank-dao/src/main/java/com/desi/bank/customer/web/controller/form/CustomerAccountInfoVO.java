@@ -18,8 +18,8 @@ public class CustomerAccountInfoVO {
 	private String accountNumber;
 	private String currency;
 	private String branch;
-	private long tavBalance;
-	private long avBalance;
+	private float tavBalance;
+	private float avBalance;
 	private Date StatusAsOf;
 	private String payeeName;
 	private String accountType;
@@ -83,19 +83,19 @@ public class CustomerAccountInfoVO {
 
 	
 
-	public long getTavBalance() {
+	public float getTavBalance() {
 		return tavBalance;
 	}
 
-	public void setTavBalance(long tavBalance) {
+	public void setTavBalance(float tavBalance) {
 		this.tavBalance = tavBalance;
 	}
 
-	public long getAvBalance() {
+	public float getAvBalance() {
 		return avBalance;
 	}
 
-	public void setAvBalance(long avBalance) {
+	public void setAvBalance(float avBalance) {
 		this.avBalance = avBalance;
 	}
 

@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,21 +22,12 @@ import com.desi.bank.rest.api.vo.CustomerSavingVOList;
 public class EmployeeController {
 	
 	
-	/**
-	 * Initiate Logger for this class
-	 */
-	private static final Log logger = LogFactory.getLog(EmployeeController.class);
-	
-	
 	public EmployeeController(){
-		System.out.println("_)@)@)@HHHHHHHHHHHHHHH");
-		if(logger.isInfoEnabled()) {
-				logger.info("EmployeeController is instantiated!!!!!!!!!!!!!!!!!!!!!!!!!!!!!............");
-				logger.info("EmployeeController is instantiated!!!!!!!!!!!!!!!!!!!!!!!!!!!!!............");
-				logger.info("EmployeeController is instantiated!!!!!!!!!!!!!!!!!!!!!!!!!!!!!............");
-				logger.info("EmployeeController is instantiated!!!!!!!!!!!!!!!!!!!!!!!!!!!!!............");
-		}
+		System.out.println("_)@)@)@HHHHHHHEmployeeControllerHHHHHHHH");
 	}
+	
+	
+	
 	
 	
 	@RequestMapping(value="/customers/savings/xml",method=RequestMethod.GET,produces={"application/xml"})
@@ -76,13 +65,10 @@ public class EmployeeController {
 	@RequestMapping(value="/customers/savings",method=RequestMethod.GET,produces={"application/json"})
 	@ResponseBody public CustomerSavingVOList  findCustomerSavingEnquiry(@RequestHeader("User-Agent") String userAgent) {
 		
-		if(logger.isInfoEnabled()) {
-			logger.info("executing   the method findCustomerSavingEnquiry................");
-		}
 		
-		if(logger.isDebugEnabled()) {
+	/*	if(logger.isDebugEnabled()) {
 			logger.debug("userAgent .... "+userAgent);
-		}
+		}*/
 		
 		CustomerSavingVO customerSavingVO=new CustomerSavingVO();
 		customerSavingVO.setCsaid(202);
@@ -108,9 +94,9 @@ public class EmployeeController {
 		
 		CustomerSavingVOList customerSavingVOList=new CustomerSavingVOList();
 		customerSavingVOList.setCustomerSavingVOs(customerSavingVOs);
-		if(logger.isDebugEnabled()) {
+		/*if(logger.isDebugEnabled()) {
 			logger.debug(customerSavingVOList);
-		}
+		}*/
 		return customerSavingVOList;
 	}
 	

@@ -51,7 +51,7 @@ public class UserSpringSecuirtyAuthProvider implements UserDetailsService {
 					 user =  new User(username, userSessionVO.getPassword(),	true,true,true,false,
 								getAuthorities(userSessionVO.getRole()));
 				}else{
-					user =  new User(username, userSessionVO.getPassword(),	true,true,true,true,
+					user =  new User(userSessionVO.getLoginid(), userSessionVO.getPassword(),	true,true,true,true,
 							getAuthorities(userSessionVO.getRole()));
 				}
 			}else{
