@@ -298,6 +298,7 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
 		List<Login> logins = (List<Login>) getHibernateTemplate().find("from Login l where l.loginid = ?", new Object[] { userid });
 		if(logins!=null && logins.size()==1){
 			Login login=logins.get(0);
+			//Automatically dirty checking mechanism
 			//updating the password
 			login.setPassword(newpassword);
 			//update last login time

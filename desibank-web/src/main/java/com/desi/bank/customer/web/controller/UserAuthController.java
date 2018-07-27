@@ -317,8 +317,9 @@ public class UserAuthController {
 		return "custChangePassword";
 	}
 	
-	@RequestMapping(value = "/auth/slogout.htm", method = RequestMethod.GET)
+	@RequestMapping(value = {"/auth/slogout.htm","auth/logout.htm"}, method = RequestMethod.GET)
 	public String loginLogout(HttpSession session) {
+		session.invalidate();
 		return "redirect:/index.jsp?message=you have logged out from the application successfully";
 	}
 	

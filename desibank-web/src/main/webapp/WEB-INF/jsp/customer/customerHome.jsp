@@ -68,7 +68,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 <!-- //modal -->
-	
+	<br/><br/><br/><br/>
 
 <!-- copyright -->
 <jsp:include page="../common/copyright.jsp"/>

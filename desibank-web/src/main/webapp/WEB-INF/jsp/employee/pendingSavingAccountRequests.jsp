@@ -149,11 +149,11 @@ function openAccountGenerationPopup(name,email,csaid){
                    <td>${item.jobTitle }</td>
                     <td><img src="${pageContext.request.contextPath}/findImageByUserid.htm?userid=${item.userid}" style="height: 42px;"></td>
                     <td>
-                      <a href="javascript:openRejectPopup('${item.name }','${item.email }',${item.userid});">
+                      <a href="javascript:openRejectPopup('${item.name }','${item.email }','${item.userid}');">
                     <img src="${pageContext.request.contextPath}/images/icon/reject.png">
                       </a>
                     &nbsp;&nbsp;&nbsp;
-                       <a href="javascript:openAccountGenerationPopup('${item.name }','${item.email }',${item.userid});">
+                       <a href="javascript:openAccountGenerationPopup('${item.name }','${item.email }','${item.userid}');">
                     <img src="${pageContext.request.contextPath}/images/icon/approve.png">
                     </a>
                     </td>
