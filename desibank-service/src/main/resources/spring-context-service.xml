@@ -17,7 +17,6 @@
      <context:component-scan base-package="com.desi.bank.customer.service.impl"/>
       <context:component-scan base-package="com.desi.bank.employee.service.impl"/>
       <context:component-scan base-package="com.desi.bank.common.service.impl"/>
-      <context:component-scan base-package="com.desi.bank.scheduler.service"/>
          <import resource="email-message-sender.xml"/>
       <import resource="properties-loader.xml"/>
       <import resource="spring-aop-exception-chaining.xml"/>
