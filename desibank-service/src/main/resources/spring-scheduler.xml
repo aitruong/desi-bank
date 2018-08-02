@@ -18,7 +18,7 @@
 			Spring Framework 3 Reference;
 			- http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/scheduling.html-->
 	<context:component-scan base-package="com.desi.bank.scheduler.service"/>
-	  
+		 
 	<!-- Make sure to add the <context:component-scan base-package="" /> first -->
 	<!-- Activates @Scheduled and @Async annotations for scheduling -->
 	<task:annotation-driven executor="executorWithPoolSizeRange" scheduler="taskScheduler"/>

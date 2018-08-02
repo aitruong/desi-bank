@@ -83,5 +83,7 @@ public interface CustomerService {
 
 	public String updatePassword(String userid, String newpassword);
 
+	List<CustomerForm> findCustomersExpirePassWithInSevenDays();
+
 
 }

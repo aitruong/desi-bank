@@ -76,6 +76,11 @@ public class BankEmployeeController {
 	//Aware interface
 	@PostConstruct
 	public void checkValue(){
+		System.out.println("linkvalidity = "+linkvalidity);
+		System.out.println("linkvalidity = "+linkvalidity);
+		System.out.println("linkvalidity = "+linkvalidity);
+		System.out.println("linkvalidity = "+linkvalidity);
+		
 		if(logger.isDebugEnabled()) {
 			   logger.debug("linkvalidity = "+linkvalidity);
 		}

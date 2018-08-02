@@ -59,6 +59,11 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 	
 	@Override
+	public List<CustomerForm> findCustomersExpirePassWithInSevenDays() {
+		return customerDao.findCustomersExpirePassWithInSevenDays();
+	}
+	
+	@Override
 	public String persistCustomer(CustomerForm customer) {
 		
 		return customerDao.persistCustomer(customer);

@@ -30,6 +30,7 @@ Spring Root Web ApplicationContext file ->>
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>
+    	classpath:properties-loader.xml
     	classpath:spring-context-dao.xml
     	classpath:spring-context-service.xml
     	classpath:dspring-security.xml

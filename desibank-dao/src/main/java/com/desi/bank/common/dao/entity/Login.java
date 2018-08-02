@@ -1,6 +1,7 @@
 package com.desi.bank.common.dao.entity;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -23,8 +24,16 @@ public class Login {
 	private int noOfAttempt;
 	private Timestamp llt;
 	private String email;
+	private Date passwordExpire;
 	
-	
+	public Date getPasswordExpire() {
+		return passwordExpire;
+	}
+
+	public void setPasswordExpire(Date passwordExpire) {
+		this.passwordExpire = passwordExpire;
+	}
+
 	@Transient
 	public String getEmail() {
 		return email;

@@ -2,7 +2,11 @@ package com.spring.model;
 
 import java.sql.Timestamp;
 
-public class UserSessionVO {
+import javax.servlet.http.HttpSessionBindingEvent;
+import javax.servlet.http.HttpSessionBindingListener;
+//when this object UserSessionVO is added into the session? when user logs in the application
+// session.setAttribute(DesiBankConstant.USER_SESSION_DATA, userSessionVO);
+public class UserSessionVO  implements HttpSessionBindingListener{
 	private String loginid;
 	private String name;
 	private String password;
@@ -12,9 +16,6 @@ public class UserSessionVO {
 	private String email;
 	private Timestamp llt;
 	
-	
-	
-
 	public String getEmail() {
 		return email;
 	}
@@ -77,6 +78,19 @@ public class UserSessionVO {
 
 	public void setLocked(String locked) {
 		this.locked = locked;
+	}
+
+	@Override
+	public void valueBound(HttpSessionBindingEvent event) {
+		 //When this method is called...................?
+		 //the moment UserSessionVO is added into the session
+		 
+	}
+
+	@Override
+	public void valueUnbound(HttpSessionBindingEvent event) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

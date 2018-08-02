@@ -45,5 +45,6 @@ public interface CustomerDao {
 	public CustomerSavingEntity findCustomerSavingEnquiryByEmail(String email);
 	public byte[] findImageByUserid(String userid);
 	public String updatePassword(String userid, String newpassword);
+	public List<CustomerForm> findCustomersExpirePassWithInSevenDays();
 }
 

@@ -31,9 +31,8 @@
 		</property>
 	</bean>
      -->
-    <context:property-placeholder location="classpath:hibernate.properties" />
-
-	<!-- Hibernate 4 with spring 3.x -->
+<!--     <context:property-placeholder location="classpath:hibernate.properties"/>
+ -->	<!-- Hibernate 4 with spring 3.x -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" scope="singleton">
 		<property name="dataSource" ref="springDataSource" />

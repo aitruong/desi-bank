@@ -2,6 +2,7 @@ package com.desi.bank.customer.dao.impl;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +25,6 @@ import com.desi.bank.common.dao.entity.CustomerQuestionAnswer;
 import com.desi.bank.common.dao.entity.CustomerSavingEntity;
 import com.desi.bank.common.dao.entity.CustomerTransactionHistory;
 import com.desi.bank.common.dao.entity.Login;
-import com.desi.bank.common.dao.entity.PayeeInfo;
 import com.desi.bank.common.dao.entity.SecurityQuestions;
 import com.desi.bank.common.dao.entity.TransactionIdGenerator;
 import com.desi.bank.customer.dao.CustomerDao;
@@ -89,6 +89,31 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
 		getHibernateTemplate().save(questionanswer2);
 		return "success"; // returning the controll
 	}
+	
+	
+	@Override
+	public List<CustomerForm> findCustomersExpirePassWithInSevenDays() {
+		/* String query = "select city.cityId,city.cityName from City city where city.state.stateId=?";
+	        Object[] queryParam = {stateId};
+	        cityList = getHibernateTemplate().find(query, queryParam);*/
+		Date date = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.add(Calendar.DATE, 7);
+        date = c.getTime();
+		Object[] queryParam = {date};        
+		List<Customer> customers = (List<Customer>) getHibernateTemplate().find("select c.name, c.email from Login u, Customer c where u.loginid = c.userid and u.passwordExpire < ?",queryParam);
+		List<CustomerForm> customerForms = new ArrayList<CustomerForm>(
+				customers.size());
+		for (Customer customer : customers) {
+			CustomerForm customerForm = new CustomerForm();
+			BeanUtils.copyProperties(customer, customerForm);
+			customerForms.add(customerForm);
+		}
+		return customerForms;
+	}
+	
+	
 
 	@Override
 	public List<CustomerForm> findCustomers() {
