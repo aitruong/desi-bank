@@ -13,10 +13,6 @@
     http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
      http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
 
-    <!-- Creating Hibernate Template -->
-    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate"  scope="singleton" lazy-init="false" autowire="no">
-    			<property name="sessionFactory"  ref="sessionFactory"/>    
-    </bean>			
 
 	<!-- Hibernate 4 with spring 3.x -->
 	<bean id="sessionFactory"

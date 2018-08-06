@@ -50,7 +50,7 @@ public class EmployeeDaoImplTest {
 		assertEquals("success", result);
 		RejectSavingRequestEntity rejectSavingRequestEntity2=employeeDao.findRejectSavingRequestEntityByEmail("nagendra.synergisticit@gmail.com");
 		assertNotNull(rejectSavingRequestEntity2);
-		assertEquals(null,employeeDao.findCustomerSavingEnquiryById(10033));
+		assertEquals("JACKER",rejectSavingRequestEntity.getCustomerName());
 	}
 	
 	@Test(expected=ObjectNotFoundException.class)

@@ -14,7 +14,6 @@ public class Factorial {
 	public Factorial(int num) {
 		this.num = num;
 	}
-	
 	/**
 	 *  5! = 1*2*3*4*5
 	 *  6! = 1*2*3*4*5*6
@@ -36,8 +35,4 @@ public class Factorial {
 		}
 		return sum;
 	}
-	
-	
-	
-	
 }

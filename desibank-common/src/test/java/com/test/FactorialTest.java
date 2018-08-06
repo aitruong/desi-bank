@@ -17,7 +17,7 @@ public class FactorialTest {
 	
 	
 	@BeforeClass
-	public void paoa(){
+	public static void paoa(){
 		System.out.println(")@#)#)#)Only once");
 	}
 	
@@ -34,6 +34,7 @@ public class FactorialTest {
 		assertEquals(1, actual);
 	}
 	
+	//What is test case
 	@Test
 	public void testCalFactWhenInputIsOne() {
 		Factorial factorial=new Factorial(1);
